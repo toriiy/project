@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.innerWrapDiv {
+    display: flex;
+    gap: 45px;
+}
+
+.innerDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mainBlock {
+    margin: 70px 0 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

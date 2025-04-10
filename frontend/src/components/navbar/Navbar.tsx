@@ -5,19 +5,22 @@ import styles from './Navbar.module.css'
 
 const Navbar = () => {
     return (
-        <div>
+        <div className={styles.navDiv}>
             <ul className={styles.nav}>
-                <li className={styles.navLink}>
-                    <Link to={'/'}>Головна</Link>
+                <li>
+                    <Link to={'/'} className={styles.navLink}>Головна</Link>
                 </li>
-                <li className={styles.navLink}>
-                    <Link to={'/contacts'}>Контакти</Link>
+                <li>
+                    <Link to={'contacts'} className={styles.navLink}>Контакти</Link>
                 </li>
-                <li className={styles.navLink}>
-                    <Link to={'/filter'}>Фільтрувати</Link>
+                <li>
+                    <Link to={'filter'} className={styles.navLink}>Фільтрувати</Link>
                 </li>
-                <li className={styles.navLink}>
-                    <Link to={'/sign-in'}>Вхід</Link>
+                <li>
+                    <Link to={'sign-in'} className={styles.navLink}>Вхід</Link>
+                </li>
+                <li>
+                    <Link to={'my-account'} className={styles.navLink}>Особистий кабінет</Link>
                 </li>
             </ul>
         </div>
