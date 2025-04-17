@@ -21,6 +21,26 @@ export class UserController {
             next(e)
         }
     }
+
+    public async deleteUser(req: Request, res: Response, next: NextFunction) {
+        try {
+            const userId = req.params;
+            await userService.deleteUser(userId)
+            res.json('user deleted').status(204)
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    public async updateUser(req: Request, res: Response, next: NextFunction) {
+        try {
+            const userId = req.params;
+            const body = req.body as Partial<IUser>;
+            await userService.updateUser(body, userId)
+        } catch (e) {
+            next(e)
+        }
+    }
 }
 
 export const userController = new UserController()

@@ -7,6 +7,6 @@ router.get('/', commentController.getList)
 
 router.post('/', commentController.createComment)
 
-router.post('/', commentController.deleteComment)
+router.post('/:commentId', commentController.deleteComment)
 
 export const commentRouter = router;

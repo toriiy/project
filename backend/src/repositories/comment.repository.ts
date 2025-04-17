@@ -10,8 +10,8 @@ export class CommentRepository {
         return await Comment.create(body);
     }
 
-    public async delete(): Promise<void> {
-        // await Comment.deleteOne()
+    public async delete(commentId: string): Promise<void> {
+        await Comment.findByIdAndDelete(commentId)
     }
 }
 

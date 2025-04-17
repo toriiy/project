@@ -10,8 +10,8 @@ export class CommentService {
         return await commentRepository.create(body)
     }
 
-    public async deleteComment(): Promise<void> {
-        await commentRepository.delete()
+    public async deleteComment(commentId: any): Promise<void> {
+        await commentRepository.delete(commentId)
     }
 
 }
