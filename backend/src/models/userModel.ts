@@ -1,4 +1,5 @@
 import {model, Schema} from "mongoose";
+import {IUser} from "../interfaces/user.interface";
 
 const UserSchema = new Schema({
         username: {
@@ -43,4 +44,4 @@ const UserSchema = new Schema({
     {timestamps: true, versionKey: false},
 );
 
-export const User = model("users", UserSchema);
+export const User = model<IUser>("users", UserSchema);
