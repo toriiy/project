@@ -1,19 +1,18 @@
-import {IComment} from "../interfaces/comment.interface";
-import {commentRepository} from "../repositories/comment.repository";
+import { IComment } from "../interfaces/comment.interface";
+import { commentRepository } from "../repositories/comment.repository";
 
 export class CommentService {
-    public async getList(): Promise<IComment[]> {
-        return await commentRepository.getList()
-    }
+  public async getList(): Promise<IComment[]> {
+    return await commentRepository.getList();
+  }
 
-    public async createComment(body: Partial<IComment>): Promise<IComment> {
-        return await commentRepository.create(body)
-    }
+  public async createComment(body: Partial<IComment>): Promise<IComment> {
+    return await commentRepository.create(body);
+  }
 
-    public async deleteComment(commentId: any): Promise<void> {
-        await commentRepository.delete(commentId)
-    }
-
+  public async deleteComment(commentId: any): Promise<void> {
+    await commentRepository.delete(commentId);
+  }
 }
 
-export const commentService = new CommentService()
+export const commentService = new CommentService();
