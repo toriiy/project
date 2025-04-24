@@ -1,0 +1,43 @@
+.image {
+    width: 180px;
+    height: 110px;
+}
+
+.mainBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.bcgBlock {
+    background-color: darkgray;
+    width: 400px;
+    padding: 40px;
+}
+
+.wrapBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+    font-size: 17px;
+}
+
+.innerBlock {
+    display: flex;
+    gap: 8px;
+    font-size: 17px;
+    justify-content: center;
+}
+
+.button {
+    width: 150px;
+    height: 30px;
+    background-color: #4579d8;
+    color: white;
+    border: 1px solid #3535e8;
+    border-radius: 10px;
+}

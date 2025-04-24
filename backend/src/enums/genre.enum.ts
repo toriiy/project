@@ -1,6 +1,6 @@
 export enum GenreEnum {
   FANTASY = "Фентезі",
-  THRILLER = "Триллер",
+  THRILLER = "Трилер",
   ROMANTIC = "Романтика",
   Detective = "Детектив",
 }

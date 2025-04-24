@@ -5,7 +5,7 @@ import {IComment} from "../models/IComment";
 
 
 const axiosInstance = axios.create({
-    baseURL: '/api',
+    baseURL: 'http://localhost/api',
     headers: {"Content-Type": "application/json"}
 });
 

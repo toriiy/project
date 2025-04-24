@@ -1,0 +1,24 @@
+.mainImage {
+    height: 300px;
+    width: 98vw;
+    object-fit: cover;
+    margin-bottom: 50px;
+}
+
+.bookBlock {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 45px;
+}
+
+.innerBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bookImage {
+    height: 230px;
+    width: 180px;
+}

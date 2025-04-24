@@ -1,24 +1,24 @@
-// import joi from "joi";
+// import * as Joi from "joi";
 //
 // import { CategoryEnum } from "../enums/category.enum";
 // import { GenreEnum } from "../enums/genre.enum";
 // import { PublisherEnum } from "../enums/publisher.enum";
 //
 // export class bookValidator {
-//   private static bookName = joi.string().trim();
-//   private static author = joi.string().trim();
-//   private static price = joi.number();
-//   private static description = joi.string();
-//   private static language = joi.string();
-//   private static originalLanguage = joi.string();
-//   private static pages = joi.number();
-//   private static publisher = joi
-//     .string()
-//     .valid(...Object.values(PublisherEnum));
-//   private static genre = joi.string().valid(...Object.values(GenreEnum));
-//   private static category = joi.string().valid(...Object.values(CategoryEnum));
+//   private static bookName = Joi.string().trim();
+//   private static author = Joi.string().trim();
+//   private static price = Joi.number();
+//   private static description = Joi.string();
+//   private static language = Joi.string();
+//   private static originalLanguage = Joi.string();
+//   private static pages = Joi.number();
+//   private static publisher = Joi.string().valid(
+//     ...Object.values(PublisherEnum),
+//   );
+//   private static genre = Joi.string().valid(...Object.values(GenreEnum));
+//   private static category = Joi.string().valid(...Object.values(CategoryEnum));
 //
-//   public static common = joi.object({
+//   public static common = Joi.object({
 //     name: this.bookName.required(),
 //     author: this.author.required(),
 //     price: this.price.required(),

@@ -3,4 +3,5 @@ export enum PublisherEnum {
   VIVAT = "Vivat",
   NEBO = "Небо",
   RANOK = "Ранок",
+  READBERRY = "READBERRY",
 }

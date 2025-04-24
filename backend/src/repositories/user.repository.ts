@@ -20,7 +20,7 @@ export class UserRepository {
     });
   }
 
-  public async getByEmail(email: string) {
+  public async getByEmail(email: string): Promise<IUser> {
     return await User.findOne({ email });
   }
 }
