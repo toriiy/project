@@ -1,13 +1,22 @@
 import React from 'react';
 import styles from './Filter.module.css'
+import {useForm} from "react-hook-form";
+import {IFilter} from "../../models/IFilter";
 
 const Filter = () => {
+
+    const {register, handleSubmit} = useForm<IFilter>();
+
+    const customHandler = (formData: IFilter) => {
+        console.log(formData)
+    }
+
     return (
         <div className={styles.mainBlock}>
             <h2>Оберіть книгу на свій смак:</h2>
-            <form className={styles.formContainer}>
+            <form className={styles.formContainer} onSubmit={handleSubmit(customHandler)}>
                 <div className={styles.innerDiv}>
-                    <select className={styles.options}>
+                    <select className={styles.options} {...register('author')}>
                         <option value={''}>Оберіть автора</option>
                         <option value={'Агата Крісті'}>Агата Крісті</option>
                         <option value={'Тесс Ґеррітсен'}>Тесс Ґеррітсен</option>
@@ -16,7 +25,7 @@ const Filter = () => {
                         <option value={'Аннет Марі'}>Аннет Марі</option>
                     </select>
 
-                    <select className={styles.options}>
+                    <select className={styles.options} {...register('publisher')}>
                         <option value={''}>Оберіть видавництво</option>
                         <option value={'КСД'}>КСД</option>
                         <option value={'Vivat'}>Vivat</option>
@@ -27,14 +36,14 @@ const Filter = () => {
                 </div>
 
                 <div className={styles.innerDiv}>
-                    <select className={styles.options}>
+                    <select className={styles.options} {...register('category')}>
                         <option value={''}>Оберіть категорію</option>
                         <option value={'Історична література'}>Історична література</option>
                         <option value={'Художня література'}>Художня література</option>
                         <option value={'Навчальна література'}>Навчальна література</option>
                     </select>
 
-                    <select className={styles.options}>
+                    <select className={styles.options} {...register('genre')}>
                         <option value={''}>Оберіть жанр (для художньої літератури)</option>
                         <option value={'Фентезі'}>Фентезі</option>
                         <option value={'Наукова фантастика'}>Наукова фантастика</option>
