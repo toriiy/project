@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { IBook } from "../interfaces/book.interface";
 import { bookService } from "../services/book.service";
 
-export class BookController {
+class BookController {
   public async getList(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await bookService.getList();

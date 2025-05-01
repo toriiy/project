@@ -1,7 +1,7 @@
 import { IComment } from "../interfaces/comment.interface";
 import { Comment } from "../models/commentModel";
 
-export class CommentRepository {
+class CommentRepository {
   public async getList(): Promise<IComment[]> {
     return await Comment.find();
   }

@@ -1,7 +1,7 @@
 import { IBook } from "../interfaces/book.interface";
 import { Book } from "../models/bookModel";
 
-export class BookRepository {
+class BookRepository {
   public async getList(): Promise<IBook[]> {
     return await Book.find();
   }

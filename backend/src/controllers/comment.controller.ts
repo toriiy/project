@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { IComment } from "../interfaces/comment.interface";
 import { commentService } from "../services/comment.service";
 
-export class CommentController {
+class CommentController {
   public async getList(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await commentService.getList();

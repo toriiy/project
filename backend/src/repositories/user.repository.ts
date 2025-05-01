@@ -1,7 +1,7 @@
 import { IUser } from "../interfaces/user.interface";
 import { User } from "../models/userModel";
 
-export class UserRepository {
+class UserRepository {
   public async getList(): Promise<IUser[]> {
     return await User.find();
   }

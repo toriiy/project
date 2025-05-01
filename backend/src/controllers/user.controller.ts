@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { IUser } from "../interfaces/user.interface";
 import { userService } from "../services/user.service";
 
-export class UserController {
+class UserController {
   public async getList(req: Request, res: Response, next: NextFunction) {
     try {
       const result = await userService.getList();

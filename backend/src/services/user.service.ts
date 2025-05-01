@@ -1,13 +1,15 @@
 import { IUser } from "../interfaces/user.interface";
 import { userRepository } from "../repositories/user.repository";
+import { passwordService } from "./password.service";
 
-export class UserService {
+class UserService {
   public async getList(): Promise<IUser[]> {
     return await userRepository.getList();
   }
 
   public async createUser(body: Partial<IUser>): Promise<IUser> {
-    return await userRepository.create(body);
+    const password = await passwordService.hashPassword(body.password);
+    return await userRepository.create({ ...body, password });
   }
 
   public async deleteUser(userId: any): Promise<void> {

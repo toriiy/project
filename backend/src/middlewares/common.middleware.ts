@@ -5,7 +5,7 @@ import { isObjectIdOrHexString } from "mongoose";
 import { ApiError } from "../errors/api-error";
 import { userRepository } from "../repositories/user.repository";
 
-export class CommonMiddleware {
+class CommonMiddleware {
   public isIdValid(key: string) {
     return (req: Request, res: Response, next: NextFunction) => {
       try {
