@@ -1,3 +1,6 @@
+import { sortBookEnum } from "../enums/sort.enum";
+import { IQuery } from "./query.interface";
+
 export interface IBook {
   _id: string;
   name: string;
@@ -14,4 +17,8 @@ export interface IBook {
   photo?: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface IBookQuery extends IQuery {
+  sort: sortBookEnum;
 }

@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 
-import { IUser } from "../interfaces/user.interface";
+import { IUser, IUserQuery } from "../interfaces/user.interface";
 import { userService } from "../services/user.service";
 
 class UserController {
   public async getList(req: Request, res: Response, next: NextFunction) {
     try {
-      const result = await userService.getList();
+      const query = req.query as unknown as IUserQuery;
+      const result = await userService.getList(query);
       res.json(result);
     } catch (e) {
       next(e);
@@ -25,7 +26,7 @@ class UserController {
 
   public async deleteUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const userId = req.params;
+      const userId = req.params as unknown as string;
       await userService.deleteUser(userId);
       res.json("user deleted").status(204);
     } catch (e) {
@@ -35,7 +36,7 @@ class UserController {
 
   public async updateUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const userId = req.params;
+      const userId = req.params as unknown as string;
       const body = req.body as Partial<IUser>;
       await userService.updateUser(body, userId);
     } catch (e) {

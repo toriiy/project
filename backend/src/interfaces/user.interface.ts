@@ -1,3 +1,6 @@
+import { sortUserEnum } from "../enums/sort.enum";
+import { IQuery } from "./query.interface";
+
 export interface IUser {
   _id: string;
   username: string;
@@ -11,4 +14,8 @@ export interface IUser {
   isVerified: boolean;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface IUserQuery extends IQuery {
+  sort: sortUserEnum;
 }
