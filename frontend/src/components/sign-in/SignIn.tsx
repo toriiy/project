@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import styles from './SignIn.module.css'
 import {useForm} from "react-hook-form";
 import {ISignIn} from "../../models/ISignIn";
+import {apiService} from "../../services/api.service";
 
 const SignIn = () => {
 
@@ -10,6 +11,7 @@ const SignIn = () => {
 
     const customHandler = (formData: ISignIn) => {
         console.log(formData)
+        apiService.authService.signIn(formData).then()
     }
 
     return (

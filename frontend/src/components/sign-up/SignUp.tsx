@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './SignUp.module.css'
 import {useForm} from "react-hook-form";
 import {ISignUp} from "../../models/ISignUp";
+import {apiService} from "../../services/api.service";
 
 const SignUp = () => {
 
@@ -9,6 +10,7 @@ const SignUp = () => {
 
     const customHandler = (formData: ISignUp) => {
         console.log(formData)
+        apiService.authService.signUp(formData).then()
     }
 
     return (

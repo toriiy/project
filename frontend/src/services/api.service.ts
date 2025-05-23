@@ -2,6 +2,8 @@ import axios from "axios";
 import {IUser} from "../models/IUser";
 import {IBook} from "../models/IBook";
 import {IComment} from "../models/IComment";
+import {ISignIn} from "../models/ISignIn";
+import {ISignUp} from "../models/ISignUp";
 
 
 const axiosInstance = axios.create({
@@ -13,6 +15,17 @@ export const apiService = {
     userService: {
         getUsers: async (): Promise<IUser[]> => {
             const {data} = await axiosInstance.get<IUser[]>('/users');
+            return data
+        }
+    },
+
+    authService: {
+        signUp: async (dto: ISignUp) => {
+            const {data} = await axiosInstance.post('/auth/sign-up', dto);
+            return data
+        },
+        signIn: async (dto: ISignIn) => {
+            const {data} = await axiosInstance.post('/auth/sign-in', dto);
             return data
         }
     },

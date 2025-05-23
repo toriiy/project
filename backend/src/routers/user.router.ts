@@ -8,13 +8,6 @@ const router = Router();
 
 router.get("/", userController.getList);
 
-router.post(
-  "/",
-  // commonMiddleware.isBodyValid(userValidator.create),
-  commonMiddleware.isEmailUnique,
-  userController.createUser,
-);
-
 router.delete(
   "/:userId",
   commonMiddleware.isIdValid("userId"),

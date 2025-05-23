@@ -14,16 +14,6 @@ class UserController {
     }
   }
 
-  public async createUser(req: Request, res: Response, next: NextFunction) {
-    try {
-      const body = req.body as Partial<IUser>;
-      const user = await userService.createUser(body);
-      res.json(user);
-    } catch (e) {
-      next(e);
-    }
-  }
-
   public async deleteUser(req: Request, res: Response, next: NextFunction) {
     try {
       const userId = req.params as unknown as string;
