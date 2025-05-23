@@ -1,6 +1,6 @@
 import { FilterQuery } from "mongoose";
 
-import { purchaseEnum } from "../enums/purchase.enum";
+import { PurchaseEnum } from "../enums/purchase.enum";
 import {
   createPurchaseType,
   IPurchase,
@@ -14,7 +14,7 @@ class PurchaseRepository {
     query: IPurchaseQuery,
   ): Promise<{ entities: IPurchase[]; total: number }> {
     const filterObj: FilterQuery<IPurchase> = {
-      status: purchaseEnum.IN_PROGRESS,
+      status: PurchaseEnum.IN_PROGRESS,
     };
     // if(query.search){
     //     filterObj.username = {
@@ -42,7 +42,7 @@ class PurchaseRepository {
     query: IPurchaseQuery,
   ): Promise<{ entities: IPurchase[]; total: number }> {
     const filterObj: FilterQuery<IPurchase> = {
-      status: purchaseEnum.FAVOURITE,
+      status: PurchaseEnum.FAVOURITE,
     };
     // if(query.search){
     //     filterObj.username = {
