@@ -1,4 +1,4 @@
-import { sortCommentEnum } from "../enums/sort.enum";
+import { SortCommentEnum } from "../enums/sort.enum";
 import { IQuery } from "./query.interface";
 
 export interface IComment {
@@ -12,5 +12,5 @@ export interface IComment {
 }
 
 export interface ICommentQuery extends IQuery {
-  sort: sortCommentEnum;
+  sort: SortCommentEnum;
 }

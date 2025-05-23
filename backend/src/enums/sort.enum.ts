@@ -1,4 +1,4 @@
-export enum sortUserEnum {
+export enum SortUserEnum {
   USERNAME = "username",
   FIRST_NAME = "firstName",
   LAST_NAME = "lastName",
@@ -7,7 +7,7 @@ export enum sortUserEnum {
   UPDATED_AT = "updatedAt",
 }
 
-export enum sortBookEnum {
+export enum SortBookEnum {
   NAME = "name",
   AUTHOR = "author",
   PRICE = "price",
@@ -15,13 +15,13 @@ export enum sortBookEnum {
   UPDATED_AT = "updatedAt",
 }
 
-export enum sortCommentEnum {
+export enum SortCommentEnum {
   FIRST_NAME = "firstName",
   CREATED_AT = "createdAt",
   UPDATED_AT = "updatedAt",
 }
 
-export enum sortPurchaseEnum {
+export enum SortPurchaseEnum {
   NAME = "name",
   PRICE = "price",
   CREATED_AT = "createdAt",

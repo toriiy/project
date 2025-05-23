@@ -1,4 +1,4 @@
-import { sortUserEnum } from "../enums/sort.enum";
+import { SortUserEnum } from "../enums/sort.enum";
 import { IQuery } from "./query.interface";
 
 export interface IUser {
@@ -17,5 +17,5 @@ export interface IUser {
 }
 
 export interface IUserQuery extends IQuery {
-  sort: sortUserEnum;
+  sort: SortUserEnum;
 }

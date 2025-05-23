@@ -1,5 +1,5 @@
-import { purchaseEnum } from "../enums/purchase.enum";
-import { sortPurchaseEnum } from "../enums/sort.enum";
+import { PurchaseEnum } from "../enums/purchase.enum";
+import { SortPurchaseEnum } from "../enums/sort.enum";
 import { IQuery } from "./query.interface";
 
 export interface IPurchase {
@@ -9,13 +9,13 @@ export interface IPurchase {
   name: string;
   price: number;
   photo: string;
-  status: purchaseEnum;
+  status: PurchaseEnum;
   createdAt: Date;
   updatedAt: Date;
 }
 
 export interface IPurchaseQuery extends IQuery {
-  sort: sortPurchaseEnum;
+  sort: SortPurchaseEnum;
 }
 
 export type createPurchaseType = Pick<

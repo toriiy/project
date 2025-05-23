@@ -1,4 +1,4 @@
-import { sortBookEnum } from "../enums/sort.enum";
+import { SortBookEnum } from "../enums/sort.enum";
 import { IQuery } from "./query.interface";
 
 export interface IBook {
@@ -20,5 +20,5 @@ export interface IBook {
 }
 
 export interface IBookQuery extends IQuery {
-  sort: sortBookEnum;
+  sort: SortBookEnum;
 }
