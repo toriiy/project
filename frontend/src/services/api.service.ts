@@ -54,6 +54,17 @@ export const apiService = {
         signIn: async (dto: ISignIn): Promise<void> => {
             const {data: userTokens} = await axiosInstance.post<ITokenPair>('/auth/sign-in', dto);
             localStorage.setItem('userTokens', JSON.stringify(userTokens))
+        },
+        refresh: async (): Promise<void> => {
+            const userTokens = retrieveLocalStorage<ITokenPair>('user');
+
+            const {data} = await axiosInstance.post<ITokenPair>('/refresh',
+                {refreshToken: userTokens.refreshToken});
+
+            userTokens.accessToken = data.accessToken;
+            userTokens.refreshToken = data.refreshToken;
+
+            localStorage.setItem('userTokens', JSON.stringify(userTokens));
         }
     },
 
