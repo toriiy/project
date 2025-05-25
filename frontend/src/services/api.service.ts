@@ -4,12 +4,39 @@ import {IBook} from "../models/IBook";
 import {IComment} from "../models/IComment";
 import {ISignIn} from "../models/ISignIn";
 import {ISignUp} from "../models/ISignUp";
+import {ISearch} from "../models/ISearch";
+import {retrieveLocalStorage} from "../helpers/helpers";
+import {ITokenPair} from "../models/ITokenPair";
 
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost/api',
     headers: {"Content-Type": "application/json"}
 });
+
+const axiosInstanceAuthUser = axios.create({
+    baseURL: 'http://localhost/api/users',
+    headers: {"Content-Type": "application/json"}
+});
+
+
+axiosInstanceAuthUser.interceptors.request.use(request => {
+    const token = retrieveLocalStorage<ITokenPair>('user').accessToken;
+    request.headers.Authorization = 'Bearer' + token;
+    return request;
+})
+
+const axiosInstanceAuthPurchase = axios.create({
+    baseURL: 'http://localhost/api/purchase',
+    headers: {"Content-Type": "application/json"}
+});
+
+axiosInstanceAuthPurchase.interceptors.request.use(request => {
+    const token = retrieveLocalStorage<ITokenPair>('user').accessToken;
+    request.headers.Authorization = 'Bearer' + token;
+    return request;
+})
+
 
 export const apiService = {
     userService: {
@@ -20,19 +47,23 @@ export const apiService = {
     },
 
     authService: {
-        signUp: async (dto: ISignUp) => {
-            const {data} = await axiosInstance.post('/auth/sign-up', dto);
-            return data
+        signUp: async (dto: ISignUp): Promise<void> => {
+            const {data: userTokens} = await axiosInstance.post<ITokenPair>('/auth/sign-up', dto);
+            localStorage.setItem('userTokens', JSON.stringify(userTokens))
         },
-        signIn: async (dto: ISignIn) => {
-            const {data} = await axiosInstance.post('/auth/sign-in', dto);
-            return data
+        signIn: async (dto: ISignIn): Promise<void> => {
+            const {data: userTokens} = await axiosInstance.post<ITokenPair>('/auth/sign-in', dto);
+            localStorage.setItem('userTokens', JSON.stringify(userTokens))
         }
     },
 
     bookService: {
         getBooks: async (): Promise<IBook[]> => {
             const {data} = await axiosInstance.get<IBook[]>('/books');
+            return data
+        },
+        searchBooks: async ({search}: ISearch): Promise<IBook[]> => {
+            const {data} = await axiosInstance.get<IBook[]>(`/books?search=${search}`);
             return data
         }
     },
