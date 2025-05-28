@@ -19,3 +19,8 @@ export interface IUser {
 export interface IUserQuery extends IQuery {
   sort: SortUserEnum;
 }
+
+export interface IChangePassword {
+  oldPassword: string;
+  newPassword: string;
+}

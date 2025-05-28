@@ -9,7 +9,7 @@ class AuthMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ) {
+  ): Promise<void> {
     try {
       const header = req.headers.authorization;
       if (!header) {
@@ -32,6 +32,41 @@ class AuthMiddleware {
       }
 
       req.res.locals.tokenPayload = tokenPayload;
+      req.res.locals.accessToken = accessToken;
+      next();
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async checkRefreshToken(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> {
+    try {
+      const header = req.headers.authorization;
+      if (!header) {
+        throw new ApiError("No token provided", 401);
+      }
+
+      const refreshToken = header.split("Bearer")[1];
+      if (!refreshToken) {
+        throw new ApiError("No token provided", 401);
+      }
+
+      const tokenPayload = await tokenService.verifyToken(
+        refreshToken,
+        "refresh",
+      );
+
+      const tokenPair = await tokenRepository.findByParams({ refreshToken });
+      if (!tokenPair) {
+        throw new ApiError("Invalid token", 401);
+      }
+
+      req.res.locals.tokenPayload = tokenPayload;
+      req.res.locals.refreshToken = refreshToken;
       next();
     } catch (e) {
       next(e);

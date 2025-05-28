@@ -47,6 +47,10 @@ class UserRepository {
   public async getByEmail(email: string): Promise<IUser> {
     return await User.findOne({ email });
   }
+
+  public async getById(id: string): Promise<IUser> {
+    return await User.findById(id);
+  }
 }
 
 export const userRepository = new UserRepository();

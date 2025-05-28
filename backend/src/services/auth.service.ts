@@ -1,7 +1,8 @@
 import { config } from "../configs/config";
 import { EmailTypeEnum } from "../enums/email-type.enum";
 import { ApiError } from "../errors/api-error";
-import { ITokenPair } from "../interfaces/token.interface";
+import { ITokenPair, ITokenPayload } from "../interfaces/token.interface";
+import { IChangePassword } from "../interfaces/user.interface";
 import { tokenRepository } from "../repositories/token.repository";
 import { userRepository } from "../repositories/user.repository";
 import { emailService } from "./email.service";
@@ -41,6 +42,38 @@ class AuthService {
     });
 
     return tokens;
+  }
+
+  public async refresh(
+    refreshToken: string,
+    payload: ITokenPayload,
+  ): Promise<ITokenPair> {
+    await tokenRepository.deleteByParams({ refreshToken });
+
+    const tokens = tokenService.generateTokens({
+      userId: payload.userId,
+      role: payload.role,
+    });
+
+    await tokenRepository.create({ ...tokens, _userId: payload.userId });
+    return tokens;
+  }
+
+  public async changePassword(
+    dto: IChangePassword,
+    payload: ITokenPayload,
+  ): Promise<void> {
+    const user = await userRepository.getById(payload.userId);
+    const isPasswordCorrect = await passwordService.comparePassword(
+      dto.oldPassword,
+      user.password,
+    );
+    if (!isPasswordCorrect) {
+      throw new ApiError("Password is incorrect", 400);
+    }
+
+    const password = await passwordService.hashPassword(dto.newPassword);
+    await userRepository.update({ password }, payload.userId);
   }
 }
 
