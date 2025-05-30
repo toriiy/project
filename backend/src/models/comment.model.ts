@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
 import { IComment } from "../interfaces/comment.interface";
-import { Book } from "./bookModel";
+import { Book } from "./book.model";
 
 const CommentSchema = new Schema(
   {

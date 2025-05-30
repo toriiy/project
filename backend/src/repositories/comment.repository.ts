@@ -1,5 +1,5 @@
 import { IComment, ICommentQuery } from "../interfaces/comment.interface";
-import { Comment } from "../models/commentModel";
+import { Comment } from "../models/comment.model";
 
 class CommentRepository {
   public async getList(

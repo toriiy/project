@@ -1,9 +1,9 @@
 import { model, Schema } from "mongoose";
 
 import { IToken } from "../interfaces/token.interface";
-import { User } from "./userModel";
+import { User } from "./user.model";
 
-const tokenSchema = new Schema(
+const TokenSchema = new Schema(
   {
     _userId: { type: Schema.Types.ObjectId, required: true, ref: User },
     accessToken: { type: String, required: true },
@@ -12,4 +12,4 @@ const tokenSchema = new Schema(
   { timeStamps: true, versionKey: false },
 );
 
-export const Token = model<IToken>("tokens", tokenSchema);
+export const Token = model<IToken>("tokens", TokenSchema);

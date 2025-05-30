@@ -1,7 +1,7 @@
 import { FilterQuery } from "mongoose";
 
 import { IUser, IUserQuery } from "../interfaces/user.interface";
-import { User } from "../models/userModel";
+import { User } from "../models/user.model";
 
 class UserRepository {
   public async getList(

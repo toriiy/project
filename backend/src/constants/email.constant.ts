@@ -9,4 +9,8 @@ export const emailConstant = {
     subject: "Forgot password",
     template: "forgot-password",
   },
+  [EmailTypeEnum.SIGN_OUT]: {
+    subject: "Sign out",
+    template: "sign-out",
+  },
 };

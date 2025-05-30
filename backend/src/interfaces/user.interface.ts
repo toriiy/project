@@ -24,3 +24,16 @@ export interface IChangePassword {
   oldPassword: string;
   newPassword: string;
 }
+
+export type IForgotPassword = Pick<IUser, "email">;
+
+export interface ISetForgotPassword {
+  newPassword: string;
+}
+
+export type ISignUp = Pick<
+  IUser,
+  "username" | "firstName" | "lastName" | "age" | "email" | "password"
+>;
+
+export type ISignIn = Pick<IUser, "email" | "password">;

@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
 
 import { IPurchase } from "../interfaces/purchase.interface";
-import { Book } from "./bookModel";
-import { User } from "./userModel";
+import { Book } from "./book.model";
+import { User } from "./user.model";
 
 const PurchaseSchema = new Schema(
   {

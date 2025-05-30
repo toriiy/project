@@ -7,7 +7,7 @@ import {
   IPurchaseQuery,
   updatePurchaseType,
 } from "../interfaces/purchase.interface";
-import { Purchase } from "../models/purchaseModel";
+import { Purchase } from "../models/purchase.model";
 
 class PurchaseRepository {
   public async getPurchase(

@@ -1,11 +1,13 @@
 import * as jwt from "jsonwebtoken";
 
 import { config } from "../configs/config";
+import { ActionTokenTypeEnum } from "../enums/action-token-type.enum";
+import { TokenTypeEnum } from "../enums/token-type.enum";
 import { ApiError } from "../errors/api-error";
 import { ITokenPayload } from "../interfaces/token.interface";
 
 class TokenService {
-  public generateTokens(payload: any) {
+  public generateTokens(payload: ITokenPayload) {
     const accessToken = jwt.sign(payload, config.jwtAccessSecret, {
       expiresIn: "30m",
     });
@@ -16,16 +18,37 @@ class TokenService {
     return { accessToken, refreshToken };
   }
 
-  public async verifyToken(token: string, type: "access" | "refresh") {
+  public generateActionToken(
+    payload: ITokenPayload,
+    type: ActionTokenTypeEnum,
+  ) {
+    let secret: string;
+    switch (type) {
+      case ActionTokenTypeEnum.FORGOT_PASSWORD:
+        secret = config.actionForgotPasswordSecret;
+        break;
+      default:
+        throw new ApiError("Invalid action token type", 400);
+    }
+    return jwt.sign(payload, secret, { expiresIn: "30m" });
+  }
+
+  public async verifyToken(
+    token: string,
+    type: TokenTypeEnum | ActionTokenTypeEnum,
+  ): Promise<ITokenPayload> {
     try {
       let secret: string;
 
       switch (type) {
-        case "access":
+        case TokenTypeEnum.ACCESS:
           secret = config.jwtAccessSecret;
           break;
-        case "refresh":
+        case TokenTypeEnum.REFRESH:
           secret = config.jwtRefreshSecret;
+          break;
+        case ActionTokenTypeEnum.FORGOT_PASSWORD:
+          secret = config.actionForgotPasswordSecret;
           break;
         default:
           throw new ApiError("Invalid token type", 401);

@@ -1,7 +1,7 @@
 node_modules
 dist
 
-/src/models/userModel.js
+/src/models/user.model.js
 /src/app.js
 
 .env

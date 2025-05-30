@@ -1,8 +1,8 @@
-import { IToken } from "../interfaces/token.interface";
-import { Token } from "../models/tokenModel";
+import { IToken, ITokenPairWithUserId } from "../interfaces/token.interface";
+import { Token } from "../models/token.model";
 
 class TokenRepository {
-  public async create(dto: any): Promise<IToken> {
+  public async create(dto: ITokenPairWithUserId): Promise<IToken> {
     return await Token.create(dto);
   }
 
@@ -12,6 +12,10 @@ class TokenRepository {
 
   public async deleteByParams(params: Partial<IToken>): Promise<void> {
     await Token.deleteOne(params);
+  }
+
+  public async deleteAllByParams(params: Partial<IToken>): Promise<void> {
+    await Token.deleteMany(params);
   }
 }
 

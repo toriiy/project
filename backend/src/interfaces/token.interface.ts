@@ -13,3 +13,8 @@ export interface ITokenPayload {
 }
 
 export type ITokenPair = Pick<IToken, "accessToken" | "refreshToken">;
+
+export type ITokenPairWithUserId = Pick<
+  IToken,
+  "accessToken" | "refreshToken" | "_userId"
+>;

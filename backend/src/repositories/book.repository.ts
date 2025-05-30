@@ -1,5 +1,5 @@
 import { IBook, IBookQuery } from "../interfaces/book.interface";
-import { Book } from "../models/bookModel";
+import { Book } from "../models/book.model";
 
 class BookRepository {
   public async getList(
