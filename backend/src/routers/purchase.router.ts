@@ -4,9 +4,9 @@ import { purchaseController } from "../controllers/purchase.controller";
 
 const router = Router();
 
-router.get("/buy", purchaseController.getPurchase);
+router.get("/buy-list", purchaseController.getPurchase);
 
-router.get("/favorite", purchaseController.getFavorite);
+router.get("/favorites", purchaseController.getFavorite);
 
 router.put("/purchaseId", purchaseController.updatePurchase);
 

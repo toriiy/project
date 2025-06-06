@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ForgotPassword.module.css'
 import {useForm} from "react-hook-form";
 import {IForgotPassword} from "../../models/IForgotPassword";
+import {apiService} from "../../services/api.service";
 
 const ForgotPassword = () => {
 
@@ -9,6 +10,7 @@ const ForgotPassword = () => {
 
     const customHandler = (formData: IForgotPassword) => {
         console.log(formData)
+        apiService.authService.forgotPassword(formData).then()
     }
 
     return (

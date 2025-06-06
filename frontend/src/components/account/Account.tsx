@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {IUser} from "../../models/IUser";
 import {apiService} from "../../services/api.service";
 import styles from './Account.module.css'
+import {Link} from "react-router-dom";
 
 const Account = () => {
 
@@ -10,6 +11,7 @@ const Account = () => {
     useEffect(() => {
         apiService.userService.getUsers().then(value => setUsers(value))
     }, []);
+
 
     return (
         <div className={styles.mainBlock}>
@@ -26,8 +28,10 @@ const Account = () => {
                         <p>{user.email}</p>
                     </div>)}
                     </div>
-                    <button className={styles.button}>Корзина</button>
-                    <button className={styles.button}>Улюблені товари</button>
+                    <Link to={'my-account/update-user'}>Редагувати дані</Link>
+                    <Link to={'my-account/change-password'}>Змінити пароль</Link>
+                    <Link to={'my-account/cart'}>Корзина</Link>
+                    <Link to={'my-account/favorite'}>Улюблені товари</Link>
                 </div>
             </div>
         </div>

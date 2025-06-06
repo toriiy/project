@@ -7,12 +7,30 @@ import {ISignUp} from "../models/ISignUp";
 import {ISearch} from "../models/ISearch";
 import {retrieveLocalStorage} from "../helpers/helpers";
 import {ITokenPair} from "../models/ITokenPair";
+import {IForgotPassword} from "../models/IForgotPassword";
+import {IChangePassword} from "../models/IChangePassword";
+import {IPurchase} from "../models/IPurchase";
+import {ISetForgotPassword} from "../models/ISetForgotPassword";
+import {IUpdateUser} from "../models/IUpdateUser";
 
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost/api',
     headers: {"Content-Type": "application/json"}
 });
+
+const axiosInstanceAuth = axios.create({
+    baseURL: 'http://localhost/api/auth',
+    headers: {"Content-Type": "application/json"}
+});
+
+axiosInstanceAuth.interceptors.request.use(request => {
+    if (request.method?.toUpperCase() === 'PUT' || request.method?.toUpperCase() === 'DELETE') {
+        const token = retrieveLocalStorage<ITokenPair>('user').accessToken;
+        request.headers.Authorization = 'Bearer ' + token;
+    }
+    return request
+})
 
 const axiosInstanceAuthUser = axios.create({
     baseURL: 'http://localhost/api/users',
@@ -22,7 +40,7 @@ const axiosInstanceAuthUser = axios.create({
 
 axiosInstanceAuthUser.interceptors.request.use(request => {
     const token = retrieveLocalStorage<ITokenPair>('user').accessToken;
-    request.headers.Authorization = 'Bearer' + token;
+    request.headers.Authorization = 'Bearer ' + token;
     return request;
 })
 
@@ -33,7 +51,7 @@ const axiosInstanceAuthPurchase = axios.create({
 
 axiosInstanceAuthPurchase.interceptors.request.use(request => {
     const token = retrieveLocalStorage<ITokenPair>('user').accessToken;
-    request.headers.Authorization = 'Bearer' + token;
+    request.headers.Authorization = 'Bearer ' + token;
     return request;
 })
 
@@ -41,8 +59,19 @@ axiosInstanceAuthPurchase.interceptors.request.use(request => {
 export const apiService = {
     userService: {
         getUsers: async (): Promise<IUser[]> => {
-            const {data} = await axiosInstance.get<IUser[]>('/users');
+            const {data} = await axiosInstanceAuthUser.get<IUser[]>('');
             return data
+        },
+        getUser: async (): Promise<IUser> => {
+            const {data} = await axiosInstanceAuthUser.get<IUser>('/me');
+            return data
+        },
+        updateUser: async (dto: IUpdateUser): Promise<void> => {
+            const {data} = await axiosInstanceAuthUser.put<IUser>('/me', dto);
+            console.log(data)
+        },
+        deleteUser: async (): Promise<void> => {
+            await axiosInstanceAuthUser.delete<void>('/me')
         }
     },
 
@@ -65,6 +94,15 @@ export const apiService = {
             userTokens.refreshToken = data.refreshToken;
 
             localStorage.setItem('userTokens', JSON.stringify(userTokens));
+        },
+        forgotPassword: async (dto: IForgotPassword): Promise<void> => {
+            await axiosInstanceAuth.post<void>('/password/forgot', dto)
+        },
+        setForgotPassword: async (dto: ISetForgotPassword): Promise<void> => {
+            await axiosInstanceAuth.put<void>('/password/forgot', dto)
+        },
+        changePassword: async (dto: IChangePassword): Promise<void> => {
+            await axiosInstanceAuth.put<void>('/password/change', dto)
         }
     },
 
@@ -82,6 +120,17 @@ export const apiService = {
     commentService: {
         getComments: async (): Promise<IComment[]> => {
             const {data} = await axiosInstance.get<IComment[]>('/comments');
+            return data
+        }
+    },
+
+    purchaseService: {
+        getCart: async (): Promise<IPurchase[]> => {
+            const {data} = await axiosInstanceAuthPurchase.get<IPurchase[]>('/buy-list/my');
+            return data
+        },
+        getFavorites: async (): Promise<IPurchase[]> => {
+            const {data} = await axiosInstanceAuthPurchase.get<IPurchase[]>('/favorites/my');
             return data
         }
     }

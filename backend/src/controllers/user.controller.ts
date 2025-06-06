@@ -28,7 +28,8 @@ class UserController {
     try {
       const userId = req.params as unknown as string;
       const body = req.body as Partial<IUser>;
-      await userService.updateUser(body, userId);
+      const result = await userService.updateUser(body, userId);
+      res.json(result).status(201);
     } catch (e) {
       next(e);
     }
