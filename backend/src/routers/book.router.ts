@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { bookController } from "../controllers/book.controller";
 import { commonMiddleware } from "../middlewares/common.middleware";
-// import { bookValidator } from "../validators/book.validator";
+import { bookValidator } from "../validators/book.validator";
 
 const router = Router();
 
@@ -10,7 +10,7 @@ router.get("/", bookController.getList);
 
 router.post(
   "/",
-  // commonMiddleware.isBodyValid(bookValidator.common),
+  commonMiddleware.isBodyValid(bookValidator.common),
   bookController.createBook,
 );
 

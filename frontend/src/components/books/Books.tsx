@@ -12,12 +12,13 @@ const Books = () => {
 
     return (
         <div>
-            <img src="https://d3525k1ryd2155.cloudfront.net/i/en20/homepage-slides/sci-fi-2025-s-1150w.jpg"
+            <img src="https://collegeinfogeek.com/wp-content/uploads/2018/11/Essential-Books.jpg"
                  alt="books" className={styles.mainImage}/>
+
             <div className={styles.bookBlock}>{books.map(book =>
                 <div className={styles.innerBlock}>
                     <img
-                        src="https://bookclub.ua/images/db/goods/61455_122409.jpg"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/002/219/582/small_2x/illustration-of-book-icon-free-vector.jpg"
                         alt="book" className={styles.bookImage}/>
                     <h3>{book.name}</h3>
                     <p>{book.author}</p>

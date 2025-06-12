@@ -1,8 +1,7 @@
 .mainImage {
     height: 300px;
-    width: 98vw;
+    width: 99vw;
     object-fit: cover;
-    margin-bottom: 50px;
 }
 
 .bookBlock {
@@ -10,6 +9,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 45px;
+    margin-top: 60px;
 }
 
 .innerBlock {

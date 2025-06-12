@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-// import { ObjectSchema } from "joi";
+import { ObjectSchema } from "joi";
 import { isObjectIdOrHexString } from "mongoose";
 
 import { ApiError } from "../errors/api-error";
@@ -20,16 +20,16 @@ class CommonMiddleware {
     };
   }
 
-  // public isBodyValid(validator: ObjectSchema) {
-  //   return async (req: Request, res: Response, next: NextFunction) => {
-  //     try {
-  //       req.body = await validator.validateAsync(req.body);
-  //       next();
-  //     } catch (e) {
-  //       next(new ApiError(e.details[0].message, 400));
-  //     }
-  //   };
-  // }
+  public isBodyValid(validator: ObjectSchema) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        req.body = await validator.validateAsync(req.body);
+        next();
+      } catch (e) {
+        next(new ApiError(e.details[0].message, 400));
+      }
+    };
+  }
 
   public async isEmailUnique(req: Request, res: Response, next: NextFunction) {
     try {

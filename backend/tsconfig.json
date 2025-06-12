@@ -5,12 +5,15 @@
     "moduleResolution": "node",
     "rootDir": "./src",
     "outDir": "./dist",
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "src/**/*.ts"

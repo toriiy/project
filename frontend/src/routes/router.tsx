@@ -1,6 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
-import ErrorLayout from "../layouts/ErrorLayout";
-import MainLayout from "../layouts/MainLayout";
+import ErrorLayout from "../layouts/error/ErrorLayout";
+import MainLayout from "../layouts/main/MainLayout";
 import HomePage from "../pages/HomePage";
 import ContactPage from "../pages/ContactPage";
 import FilterPage from "../pages/FilterPage";
@@ -22,19 +22,13 @@ export const routes = createBrowserRouter([
             {path: 'filter', element: <FilterPage/>},
             {path: 'sign-in', element: <SignInPage/>},
             {path: 'sign-up', element: <SignUpPage/>},
-            {
-                path: 'forgot-password', element: <ForgotPasswordPage/>, children: [
-                    {path: 'set', element: <SetForgotPassword/>}
-                ]
-            },
-            {
-                path: 'my-account', element: <AccountPage/>, children: [
-                    {path: 'update-user', element: <UpdateUser/>},
-                    {path: 'change-password', element: <ChangePassword/>},
-                    {path: 'cart', element: <Cart/>},
-                    {path: 'favorite', element: <Favorites/>}
-                ]
-            }
+            {path: 'forgot-password', element: <ForgotPasswordPage/>},
+            {path: 'forgot-password/set', element: <SetForgotPassword/>},
+            {path: 'my-account', element: <AccountPage/>},
+            {path: 'my-account/update-user', element: <UpdateUser/>},
+            {path: 'my-account/change-password', element: <ChangePassword/>},
+            {path: 'my-account/cart', element: <Cart/>},
+            {path: 'my-account/favorite', element: <Favorites/>}
         ]
     }
 ]);

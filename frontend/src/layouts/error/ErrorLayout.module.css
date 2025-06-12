@@ -1,0 +1,17 @@
+.mainBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.image {
+    width: 180px;
+    height: 130px;
+    margin-bottom: 20px;
+}

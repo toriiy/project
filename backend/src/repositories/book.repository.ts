@@ -1,10 +1,9 @@
-import { IBook, IBookQuery } from "../interfaces/book.interface";
+import { IBook } from "../interfaces/book.interface";
 import { Book } from "../models/book.model";
 
 class BookRepository {
-  public async getList(
-    query: IBookQuery,
-  ): Promise<{ entities: IBook[]; total: number }> {
+  public async getList(): Promise<IBook[]> {
+    // : Promise<{ entities: IBook[]; total: number }>
     // const filterObj: FilterQuery<> = { isDeleted: false };
     // if (query.search) {
     //   filterObj.username = {
@@ -13,19 +12,21 @@ class BookRepository {
     //   };
     // }
 
-    const skip = query.limit * (query.page - 1);
-    const order = query.order;
-    const sort = query.sort;
+    // const skip = query.limit * (query.page - 1);
+    // const order = query.order;
+    // const sort = query.sort;
+    //
+    // const [entities, total] = await Promise.all([
+    //   Book.find()
+    //     .limit(query.limit)
+    //     .skip(skip)
+    //     .sort({ [sort]: order }),
+    //   Book.countDocuments(),
+    // ]);
+    //
+    // return { entities, total };
 
-    const [entities, total] = await Promise.all([
-      Book.find()
-        .limit(query.limit)
-        .skip(skip)
-        .sort({ [sort]: order }),
-      Book.countDocuments(),
-    ]);
-
-    return { entities, total };
+    return await Book.find();
   }
 
   public async create(body: Partial<IBook>): Promise<IBook> {

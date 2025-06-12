@@ -1,6 +1,7 @@
 .image {
     width: 180px;
     height: 130px;
+    margin-bottom: 20px;
 }
 
 .mainBlock {
@@ -12,8 +13,10 @@
 }
 
 .bcgBlock {
-    background-color: darkgray;
-    width: 400px;
+    border: 2px solid #5d5b5b;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    width: 500px;
     padding: 40px;
 }
 
@@ -24,10 +27,12 @@
     align-items: center;
     text-align: center;
     font-size: 17px;
+    margin-bottom: 20px;
 }
 
 .innerBlock {
     display: flex;
+    flex-direction: column;
     gap: 8px;
     font-size: 17px;
     justify-content: center;
@@ -35,9 +40,34 @@
 
 .button {
     width: 150px;
-    height: 30px;
+    padding: 5px 0 5px 0;
     background-color: #4579d8;
-    color: white;
-    border: 1px solid #3535e8;
+    color: #dfdfdf;
+    border: 1px solid #4343e4;
     border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.grayText {
+    color: #5d5b5b;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttonBlock {
+    display: flex;
+    gap: 20px;
+}
+
+.innerButtonBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
