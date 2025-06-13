@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 
 import { ITokenPayload } from "../interfaces/token.interface";
-import { IUser } from "../interfaces/user.interface";
+import { IUser, IUserQuery } from "../interfaces/user.interface";
 import { userService } from "../services/user.service";
 
 class UserController {
   public async getList(req: Request, res: Response, next: NextFunction) {
     try {
-      // const query = req.query as unknown as IUserQuery;
-      const result = await userService.getList();
+      const query = req.query as unknown as IUserQuery;
+      const result = await userService.getList(query);
       res.json(result);
     } catch (e) {
       next(e);

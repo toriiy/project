@@ -18,12 +18,7 @@ export interface IPurchaseQuery extends IQuery {
   sort: SortPurchaseEnum;
 }
 
-export type createPurchaseType = Pick<
-  IPurchase,
-  "_userId" | "_bookId" | "name" | "price" | "photo" | "status"
->;
-
-export type updatePurchaseType = Pick<
+export type commonPurchaseType = Pick<
   IPurchase,
   "name" | "price" | "photo" | "status"
 >;

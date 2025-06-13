@@ -1,30 +1,41 @@
 import {
-  createPurchaseType,
+  commonPurchaseType,
   IPurchase,
   IPurchaseQuery,
-  updatePurchaseType,
 } from "../interfaces/purchase.interface";
 import { purchaseRepository } from "../repositories/purchase.repository";
 
 class PurchaseService {
-  public async getPurchase(
+  public async getPurchaseList(
     query: IPurchaseQuery,
   ): Promise<{ entities: IPurchase[]; total: number }> {
-    return await purchaseRepository.getPurchase(query);
+    return await purchaseRepository.getPurchaseList(query);
   }
 
-  public async getFavorite(
+  public async getFavoriteList(
     query: IPurchaseQuery,
   ): Promise<{ entities: IPurchase[]; total: number }> {
-    return await purchaseRepository.getFavorite(query);
+    return await purchaseRepository.getFavoriteList(query);
   }
 
-  public async createPurchase(dto: createPurchaseType): Promise<IPurchase> {
-    return await purchaseRepository.create(dto);
+  public async getMyPurchase(userId: string): Promise<IPurchase[]> {
+    return await purchaseRepository.getMyPurchase(userId);
+  }
+
+  public async getMyFavorite(userId: string): Promise<IPurchase[]> {
+    return await purchaseRepository.getMyFavorite(userId);
+  }
+
+  public async createPurchase(
+    dto: commonPurchaseType,
+    userId: string,
+    bookId: string,
+  ): Promise<IPurchase> {
+    return await purchaseRepository.create(dto, userId, bookId);
   }
 
   public async updatePurchase(
-    dto: updatePurchaseType,
+    dto: commonPurchaseType,
     purchaseId: string,
   ): Promise<IPurchase> {
     return await purchaseRepository.update(dto, purchaseId);

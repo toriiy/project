@@ -1,32 +1,35 @@
-import { IBook } from "../interfaces/book.interface";
+import { OrderEnum } from "../enums/order.enum";
+import { SortBookEnum } from "../enums/sort.enum";
+import { IBook, IBookQuery } from "../interfaces/book.interface";
 import { Book } from "../models/book.model";
 
 class BookRepository {
-  public async getList(): Promise<IBook[]> {
-    // : Promise<{ entities: IBook[]; total: number }>
-    // const filterObj: FilterQuery<> = { isDeleted: false };
+  public async getList(
+    query: IBookQuery,
+  ): Promise<{ entities: IBook[]; total: number }> {
+    // const filterObj: FilterQuery<IBook>;
     // if (query.search) {
-    //   filterObj.username = {
+    //   filterObj.name = {
     //     $regex: query.search,
     //     $options: "i",
     //   };
     // }
 
-    // const skip = query.limit * (query.page - 1);
-    // const order = query.order;
-    // const sort = query.sort;
-    //
-    // const [entities, total] = await Promise.all([
-    //   Book.find()
-    //     .limit(query.limit)
-    //     .skip(skip)
-    //     .sort({ [sort]: order }),
-    //   Book.countDocuments(),
-    // ]);
-    //
-    // return { entities, total };
+    const page = query?.page || 1;
+    const limit = query?.limit || 10;
+    const skip = limit * (page - 1);
+    const order = query?.order || OrderEnum.ASC;
+    const sort = query?.sort || SortBookEnum.CREATED_AT;
 
-    return await Book.find();
+    const [entities, total] = await Promise.all([
+      Book.find()
+        .limit(limit)
+        .skip(skip)
+        .sort({ [sort]: order }),
+      Book.countDocuments(),
+    ]);
+
+    return { entities, total };
   }
 
   public async create(body: Partial<IBook>): Promise<IBook> {

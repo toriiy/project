@@ -14,7 +14,7 @@ router.post(
   commentController.createComment,
 );
 
-router.post(
+router.delete(
   "/:commentId",
   commonMiddleware.isIdValid("commentId"),
   commentController.deleteComment,

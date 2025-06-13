@@ -55,6 +55,17 @@ axiosInstanceAuthPurchase.interceptors.request.use(request => {
     return request;
 })
 
+const axiosInstanceRefresh = axios.create({
+    baseURL: 'http://localhost/api/auth/refresh',
+    headers: {"Content-Type": "application/json"}
+});
+
+axiosInstanceRefresh.interceptors.request.use(request => {
+    const token = retrieveLocalStorage<ITokenPair>('user').refreshToken;
+    request.headers.Authorization = 'Bearer ' + token;
+    return request
+})
+
 
 export const apiService = {
     userService: {
@@ -87,8 +98,7 @@ export const apiService = {
         refresh: async (): Promise<void> => {
             const userTokens = retrieveLocalStorage<ITokenPair>('user');
 
-            const {data} = await axiosInstance.post<ITokenPair>('/refresh',
-                {refreshToken: userTokens.refreshToken});
+            const {data} = await axiosInstanceRefresh.post<ITokenPair>('/refresh');
 
             userTokens.accessToken = data.accessToken;
             userTokens.refreshToken = data.refreshToken;
@@ -129,9 +139,21 @@ export const apiService = {
             const {data} = await axiosInstanceAuthPurchase.get<IPurchase[]>('/buy-list/my');
             return data
         },
+        createCart: async (bookId: string, dto: any) => {
+            await axiosInstanceAuthPurchase.post(`/${bookId}`, dto)
+        },
         getFavorites: async (): Promise<IPurchase[]> => {
             const {data} = await axiosInstanceAuthPurchase.get<IPurchase[]>('/favorites/my');
             return data
+        },
+        createFavorite: async (bookId: string, dto: any) => {
+            await axiosInstanceAuthPurchase.post(`/${bookId}`, dto)
+        },
+        updatePurchase: async (purchaseId: string, dto: any) => {
+            await axiosInstanceAuthPurchase.put(`/${purchaseId}`, dto)
+        },
+        deletePurchase: async (purchaseId: string) => {
+            await axiosInstanceAuthPurchase.delete(`/${purchaseId}`)
         }
     }
 }

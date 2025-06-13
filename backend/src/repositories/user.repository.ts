@@ -1,32 +1,27 @@
-import { IUser } from "../interfaces/user.interface";
+import { OrderEnum } from "../enums/order.enum";
+import { SortUserEnum } from "../enums/sort.enum";
+import { IUser, IUserQuery } from "../interfaces/user.interface";
 import { User } from "../models/user.model";
 
 class UserRepository {
-  public async getList(): Promise<IUser[]> {
-    // Promise<{ entities: IUser[]; total: number }>
-    // const filterObj: FilterQuery<IUser> = { isDeleted: false };
-    // if (query.search) {
-    //   filterObj.username = {
-    //     $regex: query.search,
-    //     $options: "i",
-    //   };
-    // }
-    //
-    // const skip = query?.limit * (query.page - 1);
-    // const order = query?.order;
-    // const sort = query?.sort;
-    //
-    // const [entities, total] = await Promise.all([
-    //   User.find()
-    //     .limit(query?.limit)
-    //     .skip(skip)
-    //     .sort({ [sort]: order }),
-    //   User.countDocuments(),
-    // ]);
+  public async getList(
+    query: IUserQuery,
+  ): Promise<{ entities: IUser[]; total: number }> {
+    const page = query?.page || 1;
+    const limit = query?.limit || 10;
+    const skip = limit * (page - 1);
+    const order = query?.order || OrderEnum.ASC;
+    const sort = query?.sort || SortUserEnum.CREATED_AT;
 
-    // return { entities, total };
+    const [entities, total] = await Promise.all([
+      User.find()
+        .limit(limit)
+        .skip(skip)
+        .sort({ [sort]: order }),
+      User.countDocuments(),
+    ]);
 
-    return await User.find();
+    return { entities, total };
   }
 
   public async getById(userId: string): Promise<IUser> {

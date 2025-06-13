@@ -8,16 +8,16 @@ const router = Router();
 
 router.get("/", bookController.getList);
 
-router.post(
-  "/",
-  commonMiddleware.isBodyValid(bookValidator.common),
-  bookController.createBook,
-);
-
 router.get(
   "/:bookId",
   commonMiddleware.isIdValid("bookId"),
   bookController.getById,
+);
+
+router.post(
+  "/",
+  commonMiddleware.isBodyValid(bookValidator.common),
+  bookController.createBook,
 );
 
 router.delete(
@@ -29,7 +29,7 @@ router.delete(
 router.put(
   "/:bookId",
   commonMiddleware.isIdValid("bookId"),
-  // commonMiddleware.isBodyValid(bookValidator.common),
+  commonMiddleware.isBodyValid(bookValidator.common),
   bookController.updateBook,
 );
 

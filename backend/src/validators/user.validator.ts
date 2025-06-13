@@ -1,4 +1,4 @@
-import * as Joi from "joi";
+import Joi from "joi";
 
 import { regexConstant } from "../constants/regex.constant";
 
@@ -11,6 +11,12 @@ export class userValidator {
     .pattern(new RegExp(regexConstant.email))
     .trim();
   private static password = Joi.string()
+    .pattern(new RegExp(regexConstant.password))
+    .trim();
+  private static oldPassword = Joi.string()
+    .pattern(new RegExp(regexConstant.password))
+    .trim();
+  private static newPassword = Joi.string()
     .pattern(new RegExp(regexConstant.password))
     .trim();
 
@@ -28,5 +34,23 @@ export class userValidator {
     firstName: this.firstName,
     lastName: this.lastName,
     age: this.age,
+  });
+
+  public static signIn = Joi.object({
+    email: this.email.required(),
+    password: this.password.required(),
+  });
+
+  public static changePassword = Joi.object({
+    oldPassword: this.oldPassword.required(),
+    newPassword: this.newPassword.required(),
+  });
+
+  public static forgotPassword = Joi.object({
+    email: this.email.required(),
+  });
+
+  public static setForgotPassword = Joi.object({
+    newPassword: this.newPassword.required(),
   });
 }

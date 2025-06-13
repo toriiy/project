@@ -1,35 +1,32 @@
 import { FilterQuery } from "mongoose";
 
+import { OrderEnum } from "../enums/order.enum";
 import { PurchaseEnum } from "../enums/purchase.enum";
+import { SortPurchaseEnum } from "../enums/sort.enum";
 import {
-  createPurchaseType,
+  commonPurchaseType,
   IPurchase,
   IPurchaseQuery,
-  updatePurchaseType,
 } from "../interfaces/purchase.interface";
 import { Purchase } from "../models/purchase.model";
 
 class PurchaseRepository {
-  public async getPurchase(
+  public async getPurchaseList(
     query: IPurchaseQuery,
   ): Promise<{ entities: IPurchase[]; total: number }> {
     const filterObj: FilterQuery<IPurchase> = {
       status: PurchaseEnum.IN_PROGRESS,
     };
-    // if(query.search){
-    //     filterObj.username = {
-    //         $regex: query.search,
-    //         $options: "i"
-    //     }
-    // }
 
-    const skip = query.limit * (query.page - 1);
-    const order = query.order;
-    const sort = query.sort;
+    const page = query?.page || 1;
+    const limit = query?.limit || 10;
+    const skip = limit * (page - 1);
+    const order = query?.order || OrderEnum.ASC;
+    const sort = query?.sort || SortPurchaseEnum.CREATED_AT;
 
     const [entities, total] = await Promise.all([
       Purchase.find(filterObj)
-        .limit(query.limit)
+        .limit(limit)
         .skip(skip)
         .sort({ [sort]: order }),
       Purchase.countDocuments(filterObj),
@@ -38,26 +35,22 @@ class PurchaseRepository {
     return { entities, total };
   }
 
-  public async getFavorite(
+  public async getFavoriteList(
     query: IPurchaseQuery,
   ): Promise<{ entities: IPurchase[]; total: number }> {
     const filterObj: FilterQuery<IPurchase> = {
       status: PurchaseEnum.FAVOURITE,
     };
-    // if(query.search){
-    //     filterObj.username = {
-    //         $regex: query.search,
-    //         $options: "i"
-    //     }
-    // }
 
-    const skip = query.limit * (query.page - 1);
-    const order = query.order;
-    const sort = query.sort;
+    const page = query?.page || 1;
+    const limit = query?.limit || 10;
+    const skip = limit * (page - 1);
+    const order = query?.order || OrderEnum.ASC;
+    const sort = query?.sort || SortPurchaseEnum.CREATED_AT;
 
     const [entities, total] = await Promise.all([
       Purchase.find(filterObj)
-        .limit(query.limit)
+        .limit(limit)
         .skip(skip)
         .sort({ [sort]: order }),
       Purchase.countDocuments(filterObj),
@@ -66,8 +59,26 @@ class PurchaseRepository {
     return { entities, total };
   }
 
-  public async create(dto: createPurchaseType): Promise<IPurchase> {
-    return await Purchase.create(dto);
+  public async getMyPurchase(userId: string): Promise<IPurchase[]> {
+    return await Purchase.findOne({
+      _userId: userId,
+      status: PurchaseEnum.IN_PROGRESS,
+    });
+  }
+
+  public async getMyFavorite(userId: string): Promise<IPurchase[]> {
+    return await Purchase.findOne({
+      _userId: userId,
+      status: PurchaseEnum.FAVOURITE,
+    });
+  }
+
+  public async create(
+    dto: commonPurchaseType,
+    userId: string,
+    bookId: string,
+  ): Promise<IPurchase> {
+    return await Purchase.create({ ...dto, _userId: userId, _bookId: bookId });
   }
 
   public async delete(purchaseId: string): Promise<string> {
@@ -76,7 +87,7 @@ class PurchaseRepository {
   }
 
   public async update(
-    dto: updatePurchaseType,
+    dto: commonPurchaseType,
     purchaseId: string,
   ): Promise<IPurchase> {
     return await Purchase.findByIdAndUpdate(purchaseId, dto, {

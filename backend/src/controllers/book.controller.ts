@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 
-import { IBook } from "../interfaces/book.interface";
+import { IBook, IBookQuery } from "../interfaces/book.interface";
 import { bookService } from "../services/book.service";
 
 class BookController {
   public async getList(req: Request, res: Response, next: NextFunction) {
     try {
-      // const query = req.query as unknown as IBookQuery;
-      const result = await bookService.getList();
+      const query = req.query as unknown as IBookQuery;
+      const result = await bookService.getList(query);
       res.json(result);
     } catch (e) {
       next(e);

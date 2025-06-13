@@ -1,9 +1,11 @@
-import { IBook } from "../interfaces/book.interface";
+import { IBook, IBookQuery } from "../interfaces/book.interface";
 import { bookRepository } from "../repositories/book.repository";
 
 class BookService {
-  public async getList(): Promise<IBook[]> {
-    return await bookRepository.getList();
+  public async getList(
+    query: IBookQuery,
+  ): Promise<{ entities: IBook[]; total: number }> {
+    return await bookRepository.getList(query);
   }
 
   public async createBook(body: Partial<IBook>): Promise<IBook> {
