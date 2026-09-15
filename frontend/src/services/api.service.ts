@@ -70,8 +70,8 @@ axiosInstanceRefresh.interceptors.request.use(request => {
 export const apiService = {
     userService: {
         getUsers: async (): Promise<IUser[]> => {
-            const {data} = await axiosInstanceAuthUser.get<IUser[]>('');
-            return data
+            const {data} = await axiosInstanceAuthUser.get<{ entities: IUser[]; total: number }>('');
+            return data.entities
         },
         getUser: async (): Promise<IUser> => {
             const {data} = await axiosInstanceAuthUser.get<IUser>('/me');
@@ -118,19 +118,19 @@ export const apiService = {
 
     bookService: {
         getBooks: async (): Promise<IBook[]> => {
-            const {data} = await axiosInstance.get<IBook[]>('/books');
-            return data
+            const {data} = await axiosInstance.get<{ entities: IBook[]; total: number }>('/books');
+            return data.entities
         },
         searchBooks: async ({search}: ISearch): Promise<IBook[]> => {
-            const {data} = await axiosInstance.get<IBook[]>(`/books?search=${search}`);
-            return data
+            const {data} = await axiosInstance.get<{ entities: IBook[]; total: number }>(`/books?search=${search}`);
+            return data.entities
         }
     },
 
     commentService: {
         getComments: async (): Promise<IComment[]> => {
-            const {data} = await axiosInstance.get<IComment[]>('/comments');
-            return data
+            const {data} = await axiosInstance.get<{ entities: IComment[]; total: number }>('/comments');
+            return data.entities
         }
     },
 

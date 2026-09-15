@@ -1,7 +1,11 @@
 import React from 'react';
+import {useRouteError} from "react-router-dom";
 import styles from './ErrorLayout.module.css'
 
 const ErrorLayout = () => {
+    const error = useRouteError();
+    console.error('Route error:', error);
+
     return (
         <div className={styles.mainBlock}>
             <div className={styles.innerBlock}>
