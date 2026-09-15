@@ -1,5 +1,3 @@
 .idea
 .env
-mongo-init.js
-mongo_db
 client

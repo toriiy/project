@@ -14,13 +14,13 @@ services:
       sh -c "npm run start:dev"
 
   db:
-    image: mongo
+    image: mongo:7
 #    ports:
 #      - "5555:27017"
     env_file:
       - .env
     volumes:
-      - ./mongo_db:/data/db
+      - mongo_db:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
   web:
     image: nginx:alpine
@@ -29,3 +29,6 @@ services:
     volumes:
       - ./client:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+volumes:
+  mongo_db:
