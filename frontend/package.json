@@ -17,6 +17,7 @@
     "react-hook-form": "^7.56.1",
     "react-router-dom": "^7.4.1",
     "react-scripts": "^5.0.1",
+    "react-spinners": "^0.17.1",
     "typescript": "^4.9.5"
   },
   "scripts": {

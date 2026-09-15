@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {ClipLoader} from "react-spinners";
 import {IUser} from "../../models/IUser";
 import {apiService} from "../../services/api.service";
 import styles from './Account.module.css'
@@ -7,9 +8,12 @@ import {Link} from "react-router-dom";
 const Account = () => {
 
     const [users, setUsers] = useState<IUser[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        apiService.userService.getUsers().then(value => setUsers(value))
+        apiService.userService.getUsers()
+            .then(value => setUsers(value))
+            .finally(() => setIsLoading(false))
     }, []);
 
 
@@ -23,7 +27,12 @@ const Account = () => {
                     <img src="https://www.iconpacks.net/icons/2/free-opened-book-icon-3163-thumb.png" alt="book"
                          className={styles.image}/>
 
-                    <div className={styles.wrapBlock}>{users.map(user => <div>
+                    {isLoading && <div className="statusBlock"><ClipLoader size={50}/></div>}
+
+                    {!isLoading && users.length === 0 &&
+                        <p className="statusBlock">Дані не знайдено</p>}
+
+                    <div className={styles.wrapBlock}>{users.map(user => <div key={user._id}>
 
                         <div className={styles.innerBlock}>
 
