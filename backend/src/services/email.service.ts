@@ -14,7 +14,6 @@ class EmailService {
   constructor() {
     this.transporter = nodemailer.createTransport({
       service: "gmail",
-      from: "",
       auth: {
         user: config.smtpEmail,
         pass: config.smtpPassword,
@@ -60,6 +59,7 @@ class EmailService {
   ): Promise<void> {
     const { subject, template } = emailConstant[type];
     const options = {
+      from: config.smtpEmail,
       to: email,
       subject,
       template,
