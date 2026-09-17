@@ -30,38 +30,38 @@ const Account = () => {
                     {isLoading && <div className="statusBlock"><ClipLoader size={50}/></div>}
 
                     {!isLoading && users.length === 0 &&
-                        <p className="statusBlock">Дані не знайдено</p>}
+                        <p className="statusBlock">Data not found</p>}
 
                     <div className={styles.wrapBlock}>{users.map(user => <div key={user._id}>
 
                         <div className={styles.innerBlock}>
 
                             <div className={styles.infoBlock}>
-                                <p className={styles.grayText}>Ім'я користувача:</p>
+                                <p className={styles.grayText}>Username:</p>
                                 <p>{user.username}</p>
                             </div>
                             <hr/>
 
                             <div className={styles.infoBlock}>
-                                <p className={styles.grayText}>Ім'я:</p>
+                                <p className={styles.grayText}>First name:</p>
                                 <p>{user.firstName}</p>
                             </div>
                             <hr/>
 
                             <div className={styles.infoBlock}>
-                                <p className={styles.grayText}>Прізвище: </p>
+                                <p className={styles.grayText}>Last name: </p>
                                 <p>{user.lastName}</p>
                             </div>
                             <hr/>
 
                             <div className={styles.infoBlock}>
-                                <p className={styles.grayText}>Вік: </p>
+                                <p className={styles.grayText}>Age: </p>
                                 <p>{user.age}</p>
                             </div>
                             <hr/>
 
                             <div className={styles.infoBlock}>
-                                <p className={styles.grayText}>Емейл: </p>
+                                <p className={styles.grayText}>Email: </p>
                                 <p>{user.email}</p>
                             </div>
 
@@ -73,13 +73,13 @@ const Account = () => {
 
                     <div className={styles.buttonBlock}>
                         <div className={styles.innerButtonBlock}>
-                            <Link to={'/my-account/update-user'} className={styles.button}>Редагувати дані</Link>
-                            <Link to={'/my-account/change-password'} className={styles.button}>Змінити пароль</Link>
+                            <Link to={'/my-account/update-user'} className={styles.button}>Edit data</Link>
+                            <Link to={'/my-account/change-password'} className={styles.button}>Change password</Link>
                         </div>
 
                         <div className={styles.innerButtonBlock}>
-                            <Link to={'/my-account/cart'} className={styles.button}>Корзина</Link>
-                            <Link to={'/my-account/favorite'} className={styles.button}>Улюблені товари</Link>
+                            <Link to={'/my-account/cart'} className={styles.button}>Cart</Link>
+                            <Link to={'/my-account/favorite'} className={styles.button}>Favorite items</Link>
                         </div>
                     </div>
 

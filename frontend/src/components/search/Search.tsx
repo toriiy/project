@@ -15,7 +15,7 @@ const Search = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(customHandler)}>
-                <input type="text" placeholder={'введіть назву книги'} {...register('search')}/>
+                <input type="text" placeholder={'enter book title'} {...register('search')}/>
                 <button>
                     <img src="https://img.icons8.com/ios7/600/search.png" alt="search icon"/>
                 </button>

@@ -14,8 +14,8 @@ const SetForgotPassword = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(customHandler)}>
-                <input type="text" placeholder={'введіть новий пароль'} {...register('newPassword')}/>
-                <button>Надіслати</button>
+                <input type="text" placeholder={'enter new password'} {...register('newPassword')}/>
+                <button>Send</button>
             </form>
         </div>
     );

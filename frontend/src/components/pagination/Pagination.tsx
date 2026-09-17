@@ -27,8 +27,8 @@ const Pagination = () => {
 
     return (
         <div>
-            <button onClick={decrementPage}>Попередня сторінка</button>
-            <button onClick={incrementPage}>Наступна сторінка</button>
+            <button onClick={decrementPage}>Previous page</button>
+            <button onClick={incrementPage}>Next page</button>
         </div>
     );
 };

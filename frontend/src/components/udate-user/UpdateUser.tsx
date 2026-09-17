@@ -14,16 +14,16 @@ const UpdateUser = () => {
     return (
         <div className={styles.mainDiv}>
             <div className={styles.innerBlock}>
-                <h2>Щоб змінити дані користувача, заповніть поля, які хочете змінити:</h2>
+                <h2>To update your user data, fill in the fields you want to change:</h2>
                 <form onSubmit={handleSubmit(customHandler)} className={styles.innerBlock}>
-                    <input type="text" placeholder={'імя користувача'} {...register('username')}
+                    <input type="text" placeholder={'username'} {...register('username')}
                            className={styles.input}/>
-                    <input type="text" placeholder={'імя'} {...register('firstName')} className={styles.input}/>
-                    <input type="text" placeholder={'прізвище'} {...register('lastName')} className={styles.input}/>
-                    <input type="number" placeholder={'вік'} {...register('age')} className={styles.input}/>
+                    <input type="text" placeholder={'first name'} {...register('firstName')} className={styles.input}/>
+                    <input type="text" placeholder={'last name'} {...register('lastName')} className={styles.input}/>
+                    <input type="number" placeholder={'age'} {...register('age')} className={styles.input}/>
                     <input type="text" placeholder={'email@gmail.com'} {...register('email')} className={styles.input}/>
 
-                    <button className={styles.sendButton}>Надіслати</button>
+                    <button className={styles.sendButton}>Send</button>
                 </form>
             </div>
         </div>

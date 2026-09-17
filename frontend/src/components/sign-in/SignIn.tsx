@@ -17,16 +17,16 @@ const SignIn = () => {
     return (
         <div className={styles.mainBlock}>
             <div className={styles.container}>
-                <h2>Щоб увійти заповніть ці комірки:</h2>
+                <h2>To sign in, fill in the fields below:</h2>
                 <form className={styles.container} onSubmit={handleSubmit(customHandler)}>
                     <input type="text" placeholder={'email@gmail.com'} {...register('email')} className={styles.input}/>
-                    <input type="text" placeholder={'пароль'} {...register('password')} className={styles.input}/>
+                    <input type="text" placeholder={'password'} {...register('password')} className={styles.input}/>
 
-                    <button className={styles.sendButton}>Увійти</button>
+                    <button className={styles.sendButton}>Sign In</button>
                 </form>
                 <div className={styles.linkDiv}>
-                    <Link to={'/sign-up'}>Не маєте акаунту? Клікніть сюди, щоб зареєструватись!</Link>
-                    <Link to={'/forgot-password'}>Забули пароль? Клікніть сюди!</Link>
+                    <Link to={'/sign-up'}>Don't have an account? Click here to sign up!</Link>
+                    <Link to={'/forgot-password'}>Forgot your password? Click here!</Link>
                 </div>
             </div>
         </div>

@@ -16,11 +16,11 @@ const ForgotPassword = () => {
     return (
         <div className={styles.mainBlock}>
             <div className={styles.container}>
-                <h2>Щоб відновити пароль введіть свою електронну пошту</h2>
+                <h2>To reset your password, enter your email</h2>
                 <form className={styles.container} onSubmit={handleSubmit(customHandler)}>
                     <input type="text" placeholder={'email@gmail.com'} {...register('email')} className={styles.input}/>
 
-                    <button className={styles.sendButton}>Відновити пароль</button>
+                    <button className={styles.sendButton}>Reset password</button>
                 </form>
             </div>
         </div>

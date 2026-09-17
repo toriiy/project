@@ -8,19 +8,19 @@ const Navbar = () => {
         <div className={styles.navDiv}>
             <ul className={styles.nav}>
                 <li>
-                    <Link to={'/'} className={styles.navLink}>Головна</Link>
+                    <Link to={'/'} className={styles.navLink}>Home</Link>
                 </li>
                 <li>
-                    <Link to={'contacts'} className={styles.navLink}>Контакти</Link>
+                    <Link to={'contacts'} className={styles.navLink}>Contacts</Link>
                 </li>
                 <li>
-                    <Link to={'filter'} className={styles.navLink}>Фільтрувати</Link>
+                    <Link to={'filter'} className={styles.navLink}>Filter</Link>
                 </li>
                 <li>
-                    <Link to={'sign-in'} className={styles.navLink}>Вхід</Link>
+                    <Link to={'sign-in'} className={styles.navLink}>Sign In</Link>
                 </li>
                 <li>
-                    <Link to={'my-account'} className={styles.navLink}>Особистий кабінет</Link>
+                    <Link to={'my-account'} className={styles.navLink}>My Account</Link>
                 </li>
             </ul>
         </div>

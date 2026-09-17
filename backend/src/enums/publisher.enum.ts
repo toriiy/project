@@ -1,7 +1,7 @@
 export enum PublisherEnum {
-  KSD = "КСД",
+  KSD = "KSD",
   VIVAT = "Vivat",
-  NEBO = "Небо",
-  RANOK = "Ранок",
-  READBERRY = "READBERRY",
+  NEBO = "Nebo",
+  RANOK = "Ranok",
+  READBERRY = "Readberry",
 }

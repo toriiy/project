@@ -10,7 +10,7 @@ const CartItem: FC<PropsType> = ({item}) => {
         <div>
             <img src="https://bookclub.ua/images/db/goods/61455_122409.jpg" alt="book"/>
             <h3>{item.name}</h3>
-            <p>{item.price} грн</p>
+            <p>{item.price} UAH</p>
         </div>
     );
 };

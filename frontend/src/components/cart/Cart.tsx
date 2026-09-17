@@ -20,7 +20,7 @@ const Cart = () => {
             {isLoading && <div className="statusBlock"><ClipLoader size={50}/></div>}
 
             {!isLoading && cart.length === 0 &&
-                <p className="statusBlock">Корзина порожня</p>}
+                <p className="statusBlock">Your cart is empty</p>}
 
             {cart.map(item => <CartItem item={item} key={item._id}/>)}
         </div>

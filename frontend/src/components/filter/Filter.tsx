@@ -13,47 +13,47 @@ const Filter = () => {
 
     return (
         <div className={styles.mainBlock}>
-            <h2>Оберіть книгу на свій смак:</h2>
+            <h2>Choose a book to your taste:</h2>
             <form className={styles.formContainer} onSubmit={handleSubmit(customHandler)}>
                 <div className={styles.innerDiv}>
                     <select className={styles.options} {...register('author')}>
-                        <option value={''}>Оберіть автора</option>
-                        <option value={'Агата Крісті'}>Агата Крісті</option>
-                        <option value={'Тесс Ґеррітсен'}>Тесс Ґеррітсен</option>
-                        <option value={'Сара Дж Маас'}>Сара Дж Маас</option>
-                        <option value={'Голлі Блек'}>Голлі Блек</option>
-                        <option value={'Аннет Марі'}>Аннет Марі</option>
+                        <option value={''}>Choose an author</option>
+                        <option value={'Agatha Christie'}>Agatha Christie</option>
+                        <option value={'Tess Gerritsen'}>Tess Gerritsen</option>
+                        <option value={'Sarah J. Maas'}>Sarah J. Maas</option>
+                        <option value={'Holly Black'}>Holly Black</option>
+                        <option value={'Annette Marie'}>Annette Marie</option>
                     </select>
 
                     <select className={styles.options} {...register('publisher')}>
-                        <option value={''}>Оберіть видавництво</option>
-                        <option value={'КСД'}>КСД</option>
+                        <option value={''}>Choose a publisher</option>
+                        <option value={'KSD'}>KSD</option>
                         <option value={'Vivat'}>Vivat</option>
-                        <option value={'Ранок'}>Ранок</option>
-                        <option value={'Небо'}>Небо</option>
+                        <option value={'Ranok'}>Ranok</option>
+                        <option value={'Nebo'}>Nebo</option>
                         <option value={'Bookchef'}>Bookchef</option>
                     </select>
                 </div>
 
                 <div className={styles.innerDiv}>
                     <select className={styles.options} {...register('category')}>
-                        <option value={''}>Оберіть категорію</option>
-                        <option value={'Історична література'}>Історична література</option>
-                        <option value={'Художня література'}>Художня література</option>
-                        <option value={'Навчальна література'}>Навчальна література</option>
+                        <option value={''}>Choose a category</option>
+                        <option value={'Historical Literature'}>Historical Literature</option>
+                        <option value={'Fiction Literature'}>Fiction Literature</option>
+                        <option value={'Educational Literature'}>Educational Literature</option>
                     </select>
 
                     <select className={styles.options} {...register('genre')}>
-                        <option value={''}>Оберіть жанр (для художньої літератури)</option>
-                        <option value={'Фентезі'}>Фентезі</option>
-                        <option value={'Наукова фантастика'}>Наукова фантастика</option>
-                        <option value={'Трилер'}>Трилер</option>
-                        <option value={'Роман'}>Роман</option>
-                        <option value={'Детектив'}>Детектив</option>
+                        <option value={''}>Choose a genre (for fiction literature)</option>
+                        <option value={'Fantasy'}>Fantasy</option>
+                        <option value={'Science Fiction'}>Science Fiction</option>
+                        <option value={'Thriller'}>Thriller</option>
+                        <option value={'Romance'}>Romance</option>
+                        <option value={'Detective'}>Detective</option>
                     </select>
                 </div>
 
-                <button className={styles.sendButton}>Фільтрувати</button>
+                <button className={styles.sendButton}>Filter</button>
             </form>
         </div>
     );

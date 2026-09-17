@@ -1,5 +1,5 @@
 export enum CategoryEnum {
-  HISTORY = "Історична література",
-  SCIENCE = "Наукова література",
-  FICTION = "Художня література",
+  HISTORY = "Historical Literature",
+  SCIENCE = "Science Literature",
+  FICTION = "Fiction Literature",
 }

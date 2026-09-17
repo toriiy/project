@@ -7,15 +7,15 @@ const Contacts = () => {
             <div className={styles.container}>
                 <div className={styles.innerWrapDiv}>
                     <div className={styles.innerDiv}>
-                        <h2>Контакти для співпраці:</h2>
+                        <h2>Contacts for cooperation:</h2>
                         <h3>Email:</h3>
                         <p>storylandcommertial@gmail.com</p>
-                        <h3>Номер телефону:</h3>
+                        <h3>Phone number:</h3>
                         <p>063-847-55-43</p>
                     </div>
                     <div className={styles.innerDiv}>
-                        <h2>Наша адреса:</h2>
-                        <p>м. Львів, вул. Грінченка 34А</p>
+                        <h2>Our address:</h2>
+                        <p>Lviv, Hrinchenka St. 34A</p>
                     </div>
                 </div>
                 <div>

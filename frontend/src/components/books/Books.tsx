@@ -22,7 +22,7 @@ const Books = () => {
             {isLoading && <div className="statusBlock"><ClipLoader size={50}/></div>}
 
             {!isLoading && books.length === 0 &&
-                <p className="statusBlock">Книг поки що немає</p>}
+                <p className="statusBlock">No books yet</p>}
 
             <div className={styles.bookBlock}>{books.map(book =>
                 <div className={styles.innerBlock} key={book._id}>
@@ -31,7 +31,7 @@ const Books = () => {
                         alt="book" className={styles.bookImage}/>
                     <h3>{book.name}</h3>
                     <p>{book.author}</p>
-                    <p><b>{book.price} грн</b></p>
+                    <p><b>{book.price} UAH</b></p>
                 </div>)}
             </div>
         </div>

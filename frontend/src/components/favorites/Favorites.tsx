@@ -20,7 +20,7 @@ const Favorites = () => {
             {isLoading && <div className="statusBlock"><ClipLoader size={50}/></div>}
 
             {!isLoading && favorites.length === 0 &&
-                <p className="statusBlock">Улюблених товарів поки немає</p>}
+                <p className="statusBlock">No favorite items yet</p>}
 
             {favorites.map(favorite => <Favorite favorite={favorite} key={favorite._id}/>)}
         </div>

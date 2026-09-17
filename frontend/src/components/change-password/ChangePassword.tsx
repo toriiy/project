@@ -16,14 +16,14 @@ const ChangePassword = () => {
     return (
         <div className={styles.mainBlock}>
             <div className={styles.innerBlock}>
-                <h2>Щоб змінити пароль, заповніть ці комірки: </h2>
+                <h2>To change your password, fill in the fields below: </h2>
                 <form onSubmit={handleSubmit(customHandler)} className={styles.innerBlock}>
-                    <input type="text" placeholder={'введіть старий пароль'} {...register('oldPassword')}
+                    <input type="text" placeholder={'enter old password'} {...register('oldPassword')}
                            className={styles.input}/>
-                    <input type="text" placeholder={'введіть новий пароль'} {...register('newPassword')}
+                    <input type="text" placeholder={'enter new password'} {...register('newPassword')}
                            className={styles.input}/>
 
-                    <button className={styles.sendButton}>Надіслати</button>
+                    <button className={styles.sendButton}>Send</button>
                 </form>
             </div>
         </div>
