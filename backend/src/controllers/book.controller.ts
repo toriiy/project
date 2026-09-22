@@ -38,7 +38,7 @@ class BookController {
     try {
       const bookId = req.params as unknown as string;
       await bookService.deleteBook(bookId);
-      res.json("book deleted").status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }

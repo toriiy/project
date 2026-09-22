@@ -26,7 +26,7 @@ router.delete(
   bookController.deleteBook,
 );
 
-router.put(
+router.patch(
   "/:bookId",
   commonMiddleware.isIdValid("bookId"),
   commonMiddleware.isBodyValid(bookValidator.common),

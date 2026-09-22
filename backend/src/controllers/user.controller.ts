@@ -29,7 +29,7 @@ class UserController {
     try {
       const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       await userService.deleteUser(tokenPayload.userId);
-      res.json("user deleted").status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }
@@ -40,7 +40,7 @@ class UserController {
       const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       const body = req.body as Partial<IUser>;
       const result = await userService.updateUser(body, tokenPayload.userId);
-      res.json(result).status(201);
+      res.status(201).json(result);
     } catch (e) {
       next(e);
     }

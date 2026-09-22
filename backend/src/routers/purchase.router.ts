@@ -39,7 +39,7 @@ router.post(
   purchaseController.createPurchase,
 );
 
-router.put(
+router.patch(
   "/:purchaseId",
   commonMiddleware.isIdValid("purchaseId"),
   authMiddleware.checkAccessToken,

@@ -17,7 +17,7 @@ router.delete(
   userController.deleteUser,
 );
 
-router.put(
+router.patch(
   "/me",
   authMiddleware.checkAccessToken,
   commonMiddleware.isBodyValid(userValidator.update),

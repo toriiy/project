@@ -28,7 +28,7 @@ class CommentController {
     try {
       const commentId = req.params as unknown as string;
       await commentService.deleteComment(commentId);
-      res.json("comment deleted").status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }

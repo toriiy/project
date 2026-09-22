@@ -27,7 +27,7 @@ router.post(
   authController.refresh,
 );
 
-router.put(
+router.patch(
   "/password/change",
   authMiddleware.checkAccessToken,
   commonMiddleware.isBodyValid(userValidator.changePassword),
@@ -40,7 +40,7 @@ router.post(
   authController.forgotPassword,
 );
 
-router.put(
+router.patch(
   "/password/forgot",
   authMiddleware.checkActionToken(ActionTokenTypeEnum.FORGOT_PASSWORD),
   commonMiddleware.isBodyValid(userValidator.setForgotPassword),
