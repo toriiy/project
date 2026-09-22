@@ -1,17 +1,26 @@
-.mainBlock{
+.mainBlock {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: calc(100vh - 76px);
 }
 
-.innerBlock{
+.innerBlock {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    padding: 40px 60px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
 }
 
 .image {
     width: 180px;
     height: 130px;
     margin-bottom: 20px;
+    opacity: 0.8;
 }
