@@ -29,9 +29,9 @@ const Books = () => {
                     <img
                         src="https://static.vecteezy.com/system/resources/thumbnails/002/219/582/small_2x/illustration-of-book-icon-free-vector.jpg"
                         alt="book" className={styles.bookImage}/>
-                    <h3>{book.name}</h3>
-                    <p>{book.author}</p>
-                    <p><b>{book.price} UAH</b></p>
+                    <h3 className={styles.bookName}>{book.name}</h3>
+                    <p className={styles.bookAuthor}>{book.author}</p>
+                    <p className={styles.bookPrice}>{book.price} UAH</p>
                 </div>)}
             </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSearchParams} from "react-router-dom";
+import styles from './Pagination.module.css'
 
 
 const Pagination = () => {
@@ -26,9 +27,9 @@ const Pagination = () => {
     }
 
     return (
-        <div>
-            <button onClick={decrementPage}>Previous page</button>
-            <button onClick={incrementPage}>Next page</button>
+        <div className={styles.paginationBlock}>
+            <button onClick={decrementPage} className={styles.button}>← Previous</button>
+            <button onClick={incrementPage} className={styles.button}>Next →</button>
         </div>
     );
 };
