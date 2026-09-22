@@ -1,0 +1,41 @@
+.mainBlock {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+}
+
+.input {
+    border: none;
+    outline: none;
+    background: transparent;
+    height: 44px;
+    padding: 0 18px;
+    width: 260px;
+    font-size: 15px;
+}
+
+.button {
+    border: none;
+    background-color: var(--color-primary);
+    height: 44px;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    filter: invert(1);
+}
