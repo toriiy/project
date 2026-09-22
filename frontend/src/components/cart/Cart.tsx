@@ -3,6 +3,7 @@ import {ClipLoader} from "react-spinners";
 import {apiService} from "../../services/api.service";
 import {IPurchase} from "../../models/IPurchase";
 import CartItem from "../cart-item/CartItem";
+import styles from './Cart.module.css'
 
 const Cart = () => {
 
@@ -22,7 +23,9 @@ const Cart = () => {
             {!isLoading && cart.length === 0 &&
                 <p className="statusBlock">Your cart is empty</p>}
 
-            {cart.map(item => <CartItem item={item} key={item._id}/>)}
+            <div className={styles.cartBlock}>
+                {cart.map(item => <CartItem item={item} key={item._id}/>)}
+            </div>
         </div>
     );
 };

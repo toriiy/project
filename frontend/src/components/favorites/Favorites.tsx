@@ -3,6 +3,7 @@ import {ClipLoader} from "react-spinners";
 import {IPurchase} from "../../models/IPurchase";
 import {apiService} from "../../services/api.service";
 import Favorite from "../favorite/Favorite";
+import styles from './Favorites.module.css'
 
 const Favorites = () => {
 
@@ -22,7 +23,9 @@ const Favorites = () => {
             {!isLoading && favorites.length === 0 &&
                 <p className="statusBlock">No favorite items yet</p>}
 
-            {favorites.map(favorite => <Favorite favorite={favorite} key={favorite._id}/>)}
+            <div className={styles.favoritesBlock}>
+                {favorites.map(favorite => <Favorite favorite={favorite} key={favorite._id}/>)}
+            </div>
         </div>
     );
 };

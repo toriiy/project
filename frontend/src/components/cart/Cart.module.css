@@ -1,0 +1,9 @@
+.cartBlock {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
