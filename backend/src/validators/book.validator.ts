@@ -1,12 +1,15 @@
 import Joi from "joi";
 
+import { regexConstant } from "../constants/regex.constant";
 import { CategoryEnum } from "../enums/category.enum";
 import { GenreEnum } from "../enums/genre.enum";
 import { PublisherEnum } from "../enums/publisher.enum";
 
 export class bookValidator {
   private static bookName = Joi.string().trim();
-  private static author = Joi.string().trim();
+  private static author = Joi.string()
+    .pattern(new RegExp(regexConstant.objectId))
+    .trim();
   private static price = Joi.number();
   private static description = Joi.string();
   private static language = Joi.string();

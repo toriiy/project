@@ -4,11 +4,12 @@ import { CategoryEnum } from "../enums/category.enum";
 import { GenreEnum } from "../enums/genre.enum";
 import { PublisherEnum } from "../enums/publisher.enum";
 import { IBook } from "../interfaces/book.interface";
+import { Author } from "./author.model";
 
 const BookSchema = new Schema(
   {
     name: { type: String, required: true },
-    author: { type: String, required: true },
+    author: { type: Schema.Types.ObjectId, required: true, ref: Author },
     price: { type: Number, required: true },
     description: { type: String, required: true },
     language: { type: String, required: true },

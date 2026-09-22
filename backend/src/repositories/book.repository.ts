@@ -23,6 +23,7 @@ class BookRepository {
 
     const [entities, total] = await Promise.all([
       Book.find()
+        .populate("author")
         .limit(limit)
         .skip(skip)
         .sort({ [sort]: order }),
@@ -37,7 +38,7 @@ class BookRepository {
   }
 
   public async getById(bookId: string): Promise<IBook> {
-    return await Book.findById(bookId);
+    return await Book.findById(bookId).populate("author");
   }
 
   public async delete(bookId: string): Promise<void> {

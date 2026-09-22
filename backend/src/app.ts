@@ -2,6 +2,7 @@ import express from "express";
 import * as mongoose from "mongoose";
 
 import { authRouter } from "./routers/auth.router";
+import { authorRouter } from "./routers/author.router";
 import { bookRouter } from "./routers/book.router";
 import { commentRouter } from "./routers/comment.router";
 import { purchaseRouter } from "./routers/purchase.router";
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", userRouter);
+app.use("/authors", authorRouter);
 app.use("/books", bookRouter);
 app.use("/comments", commentRouter);
 app.use("/auth", authRouter);

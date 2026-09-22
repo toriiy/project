@@ -7,6 +7,12 @@ export enum SortUserEnum {
   UPDATED_AT = "updatedAt",
 }
 
+export enum SortAuthorEnum {
+  NAME = "name",
+  CREATED_AT = "createdAt",
+  UPDATED_AT = "updatedAt",
+}
+
 export enum SortBookEnum {
   NAME = "name",
   AUTHOR = "author",
