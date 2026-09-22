@@ -6,6 +6,7 @@ import styles from './Navbar.module.css'
 const Navbar = () => {
     return (
         <div className={styles.navDiv}>
+            <Link to={'/'} className={styles.brand}>Storyland</Link>
             <ul className={styles.nav}>
                 <li>
                     <Link to={'/'} className={styles.navLink}>Home</Link>
