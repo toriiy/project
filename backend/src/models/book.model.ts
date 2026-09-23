@@ -1,9 +1,9 @@
 import { model, Schema } from "mongoose";
 
 import { CategoryEnum } from "../enums/category.enum";
-import { GenreEnum } from "../enums/genre.enum";
 import { IBook } from "../interfaces/book.interface";
 import { Author } from "./author.model";
+import { Genre } from "./genre.model";
 import { Publisher } from "./publisher.model";
 
 const BookSchema = new Schema(
@@ -21,7 +21,7 @@ const BookSchema = new Schema(
       required: true,
       ref: Publisher,
     },
-    genre: { type: String, enum: GenreEnum, required: true },
+    genre: { type: Schema.Types.ObjectId, required: true, ref: Genre },
     category: { type: String, enum: CategoryEnum, required: true },
     photo: { type: String, required: false },
   },
