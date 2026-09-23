@@ -3,7 +3,6 @@ import Joi from "joi";
 import { regexConstant } from "../constants/regex.constant";
 import { CategoryEnum } from "../enums/category.enum";
 import { GenreEnum } from "../enums/genre.enum";
-import { PublisherEnum } from "../enums/publisher.enum";
 
 export class bookValidator {
   private static bookName = Joi.string().trim();
@@ -15,9 +14,9 @@ export class bookValidator {
   private static language = Joi.string();
   private static originalLanguage = Joi.string();
   private static pages = Joi.number();
-  private static publisher = Joi.string().valid(
-    ...Object.values(PublisherEnum),
-  );
+  private static publisher = Joi.string()
+    .pattern(new RegExp(regexConstant.objectId))
+    .trim();
   private static genre = Joi.string().valid(...Object.values(GenreEnum));
   private static category = Joi.string().valid(...Object.values(CategoryEnum));
 

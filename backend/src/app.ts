@@ -5,6 +5,7 @@ import { authRouter } from "./routers/auth.router";
 import { authorRouter } from "./routers/author.router";
 import { bookRouter } from "./routers/book.router";
 import { commentRouter } from "./routers/comment.router";
+import { publisherRouter } from "./routers/publisher.router";
 import { purchaseRouter } from "./routers/purchase.router";
 // import { ApiError } from "./errors/api-error";
 import { userRouter } from "./routers/user.router";
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", userRouter);
 app.use("/authors", authorRouter);
+app.use("/publishers", publisherRouter);
 app.use("/books", bookRouter);
 app.use("/comments", commentRouter);
 app.use("/auth", authRouter);
