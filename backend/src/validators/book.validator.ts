@@ -1,7 +1,6 @@
 import Joi from "joi";
 
 import { regexConstant } from "../constants/regex.constant";
-import { CategoryEnum } from "../enums/category.enum";
 
 export class bookValidator {
   private static bookName = Joi.string().trim();
@@ -19,7 +18,9 @@ export class bookValidator {
   private static genre = Joi.string()
     .pattern(new RegExp(regexConstant.objectId))
     .trim();
-  private static category = Joi.string().valid(...Object.values(CategoryEnum));
+  private static category = Joi.string()
+    .pattern(new RegExp(regexConstant.objectId))
+    .trim();
 
   public static common = Joi.object({
     name: this.bookName.required(),

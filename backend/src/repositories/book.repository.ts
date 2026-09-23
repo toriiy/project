@@ -26,6 +26,7 @@ class BookRepository {
         .populate("author")
         .populate("publisher")
         .populate("genre")
+        .populate("category")
         .limit(limit)
         .skip(skip)
         .sort({ [sort]: order }),
@@ -43,7 +44,8 @@ class BookRepository {
     return await Book.findById(bookId)
       .populate("author")
       .populate("publisher")
-      .populate("genre");
+      .populate("genre")
+      .populate("category");
   }
 
   public async delete(bookId: string): Promise<void> {

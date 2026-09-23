@@ -1,8 +1,8 @@
 import { model, Schema } from "mongoose";
 
-import { CategoryEnum } from "../enums/category.enum";
 import { IBook } from "../interfaces/book.interface";
 import { Author } from "./author.model";
+import { Category } from "./category.model";
 import { Genre } from "./genre.model";
 import { Publisher } from "./publisher.model";
 
@@ -22,7 +22,7 @@ const BookSchema = new Schema(
       ref: Publisher,
     },
     genre: { type: Schema.Types.ObjectId, required: true, ref: Genre },
-    category: { type: String, enum: CategoryEnum, required: true },
+    category: { type: Schema.Types.ObjectId, required: true, ref: Category },
     photo: { type: String, required: false },
   },
   { timestamps: true, versionKey: false },
