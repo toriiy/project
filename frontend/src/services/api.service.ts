@@ -29,7 +29,7 @@ const axiosInstanceAuth = axios.create({
 });
 
 axiosInstanceAuth.interceptors.request.use(request => {
-    if (request.method?.toUpperCase() === 'PUT' || request.method?.toUpperCase() === 'DELETE') {
+    if (request.method?.toUpperCase() === 'PATCH' || request.method?.toUpperCase() === 'DELETE') {
         const token = retrieveLocalStorage<ITokenPair>('user').accessToken;
         request.headers.Authorization = 'Bearer ' + token;
     }
@@ -93,11 +93,18 @@ export const apiService = {
     authService: {
         signUp: async (dto: ISignUp): Promise<void> => {
             const {data: userTokens} = await axiosInstance.post<ITokenPair>('/auth/sign-up', dto);
-            localStorage.setItem('userTokens', JSON.stringify(userTokens))
+            localStorage.setItem('user', JSON.stringify(userTokens))
         },
         signIn: async (dto: ISignIn): Promise<void> => {
             const {data: userTokens} = await axiosInstance.post<ITokenPair>('/auth/sign-in', dto);
-            localStorage.setItem('userTokens', JSON.stringify(userTokens))
+            localStorage.setItem('user', JSON.stringify(userTokens))
+        },
+        signOut: async (): Promise<void> => {
+            try {
+                await axiosInstanceAuth.delete<void>('/sign-out');
+            } finally {
+                localStorage.removeItem('user');
+            }
         },
         refresh: async (): Promise<void> => {
             const userTokens = retrieveLocalStorage<ITokenPair>('user');
@@ -107,7 +114,7 @@ export const apiService = {
             userTokens.accessToken = data.accessToken;
             userTokens.refreshToken = data.refreshToken;
 
-            localStorage.setItem('userTokens', JSON.stringify(userTokens));
+            localStorage.setItem('user', JSON.stringify(userTokens));
         },
         forgotPassword: async (dto: IForgotPassword): Promise<void> => {
             await axiosInstanceAuth.post<void>('/password/forgot', dto)

@@ -3,18 +3,23 @@ import {ClipLoader} from "react-spinners";
 import {IUser} from "../../models/IUser";
 import {apiService} from "../../services/api.service";
 import styles from './Account.module.css'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Account = () => {
 
     const [users, setUsers] = useState<IUser[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         apiService.userService.getUsers()
             .then(value => setUsers(value))
             .finally(() => setIsLoading(false))
     }, []);
+
+    const signOutHandler = () => {
+        apiService.authService.signOut().finally(() => navigate('/sign-in'))
+    }
 
 
     return (
@@ -82,6 +87,8 @@ const Account = () => {
                             <Link to={'/my-account/favorite'} className={styles.button}>Favorite items</Link>
                         </div>
                     </div>
+
+                    <button className={styles.signOutButton} onClick={signOutHandler}>Sign Out</button>
 
                 </div>
             </div>

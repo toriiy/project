@@ -6,3 +6,7 @@ export const retrieveLocalStorage = <T, >(key: string) => {
     const parse = JSON.parse(obj);
     return parse as T;
 }
+
+export const isAuthenticated = (): boolean => {
+    return !!localStorage.getItem('user');
+}

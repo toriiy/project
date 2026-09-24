@@ -47,7 +47,7 @@ class AuthController {
       const dto = req.body as IChangePassword;
       const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       await authService.changePassword(dto, tokenPayload);
-      res.status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }
@@ -57,7 +57,7 @@ class AuthController {
     try {
       const dto = req.body as IForgotPassword;
       await authService.forgotPassword(dto);
-      res.status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }
@@ -73,7 +73,7 @@ class AuthController {
       const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       const actionToken = req.res.locals.actionToken as string;
       await authService.setForgotPassword(dto, tokenPayload, actionToken);
-      res.status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }
@@ -84,7 +84,7 @@ class AuthController {
       const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       const accessToken = req.res.locals.accessToken as string;
       await authService.signOut(tokenPayload, accessToken);
-      res.status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }
@@ -94,7 +94,7 @@ class AuthController {
     try {
       const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
       await authService.signOutAll(tokenPayload);
-      res.status(204);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }

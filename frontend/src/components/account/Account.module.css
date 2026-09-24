@@ -86,3 +86,21 @@
     flex-direction: column;
     gap: 10px;
 }
+
+.signOutButton {
+    width: 170px;
+    padding: 10px 0;
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.signOutButton:hover {
+    background-color: var(--color-accent);
+    color: #fdf6ea;
+}

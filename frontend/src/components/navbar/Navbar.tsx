@@ -1,9 +1,18 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Link, useLocation} from "react-router-dom";
 import styles from './Navbar.module.css'
+import {isAuthenticated} from "../../helpers/helpers";
 
 
 const Navbar = () => {
+
+    const location = useLocation();
+    const [loggedIn, setLoggedIn] = useState(isAuthenticated());
+
+    useEffect(() => {
+        setLoggedIn(isAuthenticated());
+    }, [location]);
+
     return (
         <div className={styles.navDiv}>
             <Link to={'/'} className={styles.brand}>Storyland</Link>
@@ -17,12 +26,13 @@ const Navbar = () => {
                 <li>
                     <Link to={'filter'} className={styles.navLink}>Filter</Link>
                 </li>
-                <li>
-                    <Link to={'sign-in'} className={styles.navLink}>Sign In</Link>
-                </li>
-                <li>
-                    <Link to={'my-account'} className={styles.navLink}>My Account</Link>
-                </li>
+                {loggedIn
+                    ? <li>
+                        <Link to={'my-account'} className={styles.navLink}>My Account</Link>
+                    </li>
+                    : <li>
+                        <Link to={'sign-in'} className={styles.navLink}>Sign In</Link>
+                    </li>}
             </ul>
         </div>
     );

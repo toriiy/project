@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 import styles from './SignUp.module.css'
 import {useForm} from "react-hook-form";
 import {ISignUp} from "../../models/ISignUp";
@@ -7,10 +8,11 @@ import {apiService} from "../../services/api.service";
 const SignUp = () => {
 
     const {register, handleSubmit} = useForm<ISignUp>();
+    const navigate = useNavigate();
 
     const customHandler = (formData: ISignUp) => {
         console.log(formData)
-        apiService.authService.signUp(formData).then()
+        apiService.authService.signUp(formData).then(() => navigate('/my-account'))
     }
 
     return (

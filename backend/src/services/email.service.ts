@@ -23,29 +23,11 @@ class EmailService {
     const hbsOptions = {
       viewEngine: {
         extname: ".hbs",
-        layoutsDir: path.join(
-          process.cwd(),
-          "backend",
-          "src",
-          "templates",
-          "layouts",
-        ),
-        partialDir: path.join(
-          process.cwd(),
-          "backend",
-          "src",
-          "templates",
-          "partials",
-        ),
+        layoutsDir: path.join(process.cwd(), "src", "templates", "layouts"),
+        partialsDir: path.join(process.cwd(), "src", "templates", "partials"),
         defaultLayout: "main",
       },
-      viewPath: path.join(
-        process.cwd(),
-        "backend",
-        "src",
-        "templates",
-        "views",
-      ),
+      viewPath: path.join(process.cwd(), "src", "templates", "views"),
       extName: ".hbs",
     };
 
