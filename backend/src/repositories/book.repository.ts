@@ -57,6 +57,22 @@ class BookRepository {
       returnDocument: "after",
     });
   }
+
+  public async updatePhoto(bookId: string, photo: string): Promise<IBook> {
+    return await Book.findByIdAndUpdate(
+      bookId,
+      { photo },
+      { returnDocument: "after" },
+    );
+  }
+
+  public async removePhoto(bookId: string): Promise<IBook> {
+    return await Book.findByIdAndUpdate(
+      bookId,
+      { $unset: { photo: "" } },
+      { returnDocument: "after" },
+    );
+  }
 }
 
 export const bookRepository = new BookRepository();

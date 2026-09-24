@@ -15,4 +15,8 @@ export const config = {
 
   smtpEmail: process.env.SMTP_EMAIL,
   smtpPassword: process.env.SMTP_PASSWORD,
+
+  supabaseUrl: process.env.SUPABASE_URL,
+  supabaseKey: process.env.SUPABASE_KEY,
+  supabaseBucket: process.env.SUPABASE_BUCKET,
 };

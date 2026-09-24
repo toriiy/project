@@ -60,7 +60,7 @@ class PurchaseController {
     try {
       const dto = req.body as commonPurchaseType;
       const tokenPayload = req.res.locals.tokenPayload as ITokenPayload;
-      const bookId = req.params as unknown as string;
+      const { bookId } = req.params;
       const result = await purchaseService.createPurchase(
         dto,
         tokenPayload.userId,
@@ -74,9 +74,9 @@ class PurchaseController {
 
   public async deletePurchase(req: Request, res: Response, next: NextFunction) {
     try {
-      const purchaseId = req.params as unknown as string;
-      const result = await purchaseService.deletePurchase(purchaseId);
-      res.json(result).status(204);
+      const { purchaseId } = req.params;
+      await purchaseService.deletePurchase(purchaseId);
+      res.status(204).send();
     } catch (e) {
       next(e);
     }
@@ -85,7 +85,7 @@ class PurchaseController {
   public async updatePurchase(req: Request, res: Response, next: NextFunction) {
     try {
       const dto = req.body as commonPurchaseType;
-      const purchaseId = req.params as unknown as string;
+      const { purchaseId } = req.params;
       const result = await purchaseService.updatePurchase(dto, purchaseId);
       res.json(result);
     } catch (e) {

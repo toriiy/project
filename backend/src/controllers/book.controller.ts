@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
+import { ApiError } from "../errors/api-error";
 import { IBook, IBookQuery } from "../interfaces/book.interface";
 import { bookService } from "../services/book.service";
 
@@ -26,7 +27,7 @@ class BookController {
 
   public async getById(req: Request, res: Response, next: NextFunction) {
     try {
-      const bookId = req.params as unknown as string;
+      const { bookId } = req.params;
       const result = await bookService.getById(bookId);
       res.json(result);
     } catch (e) {
@@ -36,7 +37,7 @@ class BookController {
 
   public async deleteBook(req: Request, res: Response, next: NextFunction) {
     try {
-      const bookId = req.params as unknown as string;
+      const { bookId } = req.params;
       await bookService.deleteBook(bookId);
       res.status(204).send();
     } catch (e) {
@@ -46,9 +47,32 @@ class BookController {
 
   public async updateBook(req: Request, res: Response, next: NextFunction) {
     try {
-      const bookId = req.params as unknown as string;
+      const { bookId } = req.params;
       const body = req.body as Partial<IBook>;
       const result = await bookService.updateBook(bookId, body);
+      res.json(result);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async uploadPhoto(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { bookId } = req.params;
+      if (!req.file) {
+        throw new ApiError("Photo file is required", 400);
+      }
+      const result = await bookService.uploadPhoto(bookId, req.file);
+      res.json(result);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  public async deletePhoto(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { bookId } = req.params;
+      const result = await bookService.deletePhoto(bookId);
       res.json(result);
     } catch (e) {
       next(e);

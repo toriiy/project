@@ -26,7 +26,7 @@ class CommentController {
 
   public async deleteComment(req: Request, res: Response, next: NextFunction) {
     try {
-      const commentId = req.params as unknown as string;
+      const { commentId } = req.params;
       await commentService.deleteComment(commentId);
       res.status(204).send();
     } catch (e) {

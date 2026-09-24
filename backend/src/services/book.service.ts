@@ -1,5 +1,7 @@
+import { ApiError } from "../errors/api-error";
 import { IBook, IBookQuery } from "../interfaces/book.interface";
 import { bookRepository } from "../repositories/book.repository";
+import { storageService } from "./storage.service";
 
 class BookService {
   public async getList(
@@ -25,6 +27,43 @@ class BookService {
     body: Partial<IBook>,
   ): Promise<IBook> {
     return await bookRepository.update(bookId, body);
+  }
+
+  public async uploadPhoto(
+    bookId: string,
+    file: Express.Multer.File,
+  ): Promise<IBook> {
+    const book = await bookRepository.getById(bookId);
+    if (!book) {
+      throw new ApiError("Book not found", 404);
+    }
+
+    if (book.photo) {
+      await storageService.deleteFile(book.photo);
+    }
+
+    const path = `books/${bookId}/${Date.now()}-${file.originalname}`;
+    const photoUrl = await storageService.uploadFile(
+      path,
+      file.buffer,
+      file.mimetype,
+    );
+
+    return await bookRepository.updatePhoto(bookId, photoUrl);
+  }
+
+  public async deletePhoto(bookId: string): Promise<IBook> {
+    const book = await bookRepository.getById(bookId);
+    if (!book) {
+      throw new ApiError("Book not found", 404);
+    }
+    if (!book.photo) {
+      throw new ApiError("Book has no photo", 400);
+    }
+
+    await storageService.deleteFile(book.photo);
+
+    return await bookRepository.removePhoto(bookId);
   }
 }
 
