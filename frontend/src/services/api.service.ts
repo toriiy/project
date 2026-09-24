@@ -128,6 +128,16 @@ export const apiService = {
         searchBooks: async ({search}: ISearch): Promise<IBook[]> => {
             const {data} = await axiosInstance.get<{ entities: IBook[]; total: number }>(`/books?search=${search}`);
             return data.entities
+        },
+        uploadPhoto: async (bookId: string, photo: File): Promise<IBook> => {
+            const formData = new FormData();
+            formData.append('photo', photo);
+            const {data} = await axiosInstance.post<IBook>(`/books/${bookId}/photo`, formData);
+            return data
+        },
+        deletePhoto: async (bookId: string): Promise<IBook> => {
+            const {data} = await axiosInstance.delete<IBook>(`/books/${bookId}/photo`);
+            return data
         }
     },
 
