@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "commonjs",
-    "moduleResolution": "node",
     "rootDir": "./src",
     "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
@@ -10,10 +9,7 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "types": [
-      "node"
-    ]
+    "esModuleInterop": true
   },
   "include": [
     "src/**/*.ts"
