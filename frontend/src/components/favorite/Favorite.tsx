@@ -10,7 +10,7 @@ const Favorite: FC<PropsType> = ({favorite}) => {
         <div className={styles.itemBlock}>
             <img src="https://bookclub.ua/images/db/goods/61455_122409.jpg" alt="book" className={styles.image}/>
             <h3 className={styles.name}>{favorite.name}</h3>
-            <p className={styles.price}>{favorite.price} UAH</p>
+            <p className={styles.price}>{favorite.price} $</p>
         </div>
     );
 };

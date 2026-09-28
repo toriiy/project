@@ -31,7 +31,7 @@ const Books = () => {
                         alt="book" className={styles.bookImage}/>
                     <h3 className={styles.bookName}>{book.name}</h3>
                     <p className={styles.bookAuthor}>{book.author?.name}</p>
-                    <p className={styles.bookPrice}>{book.price} UAH</p>
+                    <p className={styles.bookPrice}>{book.price} $</p>
                 </div>)}
             </div>
         </div>
