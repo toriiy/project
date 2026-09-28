@@ -2,7 +2,11 @@ import { config } from "../configs/config";
 import { ActionTokenTypeEnum } from "../enums/action-token-type.enum";
 import { EmailTypeEnum } from "../enums/email-type.enum";
 import { ApiError } from "../errors/api-error";
-import { ITokenPair, ITokenPayload } from "../interfaces/token.interface";
+import {
+  IAuthResponse,
+  ITokenPair,
+  ITokenPayload,
+} from "../interfaces/token.interface";
 import {
   IChangePassword,
   IForgotPassword,
@@ -13,12 +17,13 @@ import {
 import { actionTokenRepository } from "../repositories/action-token.repository";
 import { tokenRepository } from "../repositories/token.repository";
 import { userRepository } from "../repositories/user.repository";
+import { userTransformer } from "../transformers/user.transformer";
 import { emailService } from "./email.service";
 import { passwordService } from "./password.service";
 import { tokenService } from "./token.service";
 
 class AuthService {
-  public async signIn(dto: ISignIn): Promise<ITokenPair> {
+  public async signIn(dto: ISignIn): Promise<IAuthResponse> {
     const user = await userRepository.getByEmail(dto.email);
     const isPasswordCorrect = await passwordService.comparePassword(
       dto.password,
@@ -32,10 +37,10 @@ class AuthService {
       role: user.role,
     });
     await tokenRepository.create({ ...tokens, _userId: user._id });
-    return tokens;
+    return { ...tokens, user: userTransformer.toPublic(user) };
   }
 
-  public async signUp(dto: ISignUp): Promise<ITokenPair> {
+  public async signUp(dto: ISignUp): Promise<IAuthResponse> {
     const password = await passwordService.hashPassword(dto.password);
     const user = await userRepository.create({ ...dto, password });
     const tokens = tokenService.generateTokens({
@@ -49,7 +54,7 @@ class AuthService {
       frontUrl: config.frontUrl,
     });
 
-    return tokens;
+    return { ...tokens, user: userTransformer.toPublic(user) };
   }
 
   public async refresh(

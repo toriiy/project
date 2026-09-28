@@ -6,7 +6,7 @@ import {ISignIn} from "../models/ISignIn";
 import {ISignUp} from "../models/ISignUp";
 import {ISearch} from "../models/ISearch";
 import {retrieveLocalStorage} from "../helpers/helpers";
-import {ITokenPair} from "../models/ITokenPair";
+import {IAuthResponse, ITokenPair} from "../models/ITokenPair";
 import {IForgotPassword} from "../models/IForgotPassword";
 import {IChangePassword} from "../models/IChangePassword";
 import {IPurchase} from "../models/IPurchase";
@@ -81,9 +81,13 @@ export const apiService = {
             const {data} = await axiosInstanceAuthUser.get<IUser>('/me');
             return data
         },
-        updateUser: async (dto: IUpdateUser): Promise<void> => {
+        updateUser: async (dto: IUpdateUser): Promise<IUser> => {
             const {data} = await axiosInstanceAuthUser.patch<IUser>('/me', dto);
-            console.log(data)
+            const session = retrieveLocalStorage<IAuthResponse>('user');
+            if (session.accessToken) {
+                localStorage.setItem('user', JSON.stringify({...session, user: data}));
+            }
+            return data;
         },
         deleteUser: async (): Promise<void> => {
             await axiosInstanceAuthUser.delete<void>('/me')
@@ -92,11 +96,11 @@ export const apiService = {
 
     authService: {
         signUp: async (dto: ISignUp): Promise<void> => {
-            const {data: userTokens} = await axiosInstance.post<ITokenPair>('/auth/sign-up', dto);
+            const {data: userTokens} = await axiosInstance.post<IAuthResponse>('/auth/sign-up', dto);
             localStorage.setItem('user', JSON.stringify(userTokens))
         },
         signIn: async (dto: ISignIn): Promise<void> => {
-            const {data: userTokens} = await axiosInstance.post<ITokenPair>('/auth/sign-in', dto);
+            const {data: userTokens} = await axiosInstance.post<IAuthResponse>('/auth/sign-in', dto);
             localStorage.setItem('user', JSON.stringify(userTokens))
         },
         signOut: async (): Promise<void> => {
@@ -107,9 +111,9 @@ export const apiService = {
             }
         },
         refresh: async (): Promise<void> => {
-            const userTokens = retrieveLocalStorage<ITokenPair>('user');
+            const userTokens = retrieveLocalStorage<IAuthResponse>('user');
 
-            const {data} = await axiosInstanceRefresh.post<ITokenPair>('/refresh');
+            const {data} = await axiosInstanceRefresh.post<ITokenPair>('');
 
             userTokens.accessToken = data.accessToken;
             userTokens.refreshToken = data.refreshToken;

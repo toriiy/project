@@ -1,6 +1,21 @@
 import { SortUserEnum } from "../enums/sort.enum";
 import { IQuery } from "./query.interface";
 
+export type IPublicUser = Pick<
+  IUser,
+  | "_id"
+  | "username"
+  | "firstName"
+  | "lastName"
+  | "age"
+  | "email"
+  | "role"
+  | "isDeleted"
+  | "isVerified"
+  | "createdAt"
+  | "updatedAt"
+>;
+
 export interface IUser {
   _id: string;
   username: string;

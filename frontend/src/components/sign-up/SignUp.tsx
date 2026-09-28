@@ -11,7 +11,6 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const customHandler = (formData: ISignUp) => {
-        console.log(formData)
         apiService.authService.signUp(formData).then(() => navigate('/my-account'))
     }
 

@@ -1,3 +1,5 @@
+import { IPublicUser } from "./user.interface";
+
 export interface IToken {
   _id: string;
   _userId: string;
@@ -13,6 +15,10 @@ export interface ITokenPayload {
 }
 
 export type ITokenPair = Pick<IToken, "accessToken" | "refreshToken">;
+
+export interface IAuthResponse extends ITokenPair {
+  user: IPublicUser;
+}
 
 export type ITokenPairWithUserId = Pick<
   IToken,
