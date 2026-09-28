@@ -2,7 +2,6 @@ import { IPublicUser, IUser } from "../interfaces/user.interface";
 
 class UserTransformer {
   public toPublic(user: IUser): IPublicUser {
-    // Read allowed fields explicitly: spreading a Mongoose document exposes _doc.
     return {
       _id: user._id.toString(),
       username: user.username,
