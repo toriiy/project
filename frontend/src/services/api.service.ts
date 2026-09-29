@@ -132,9 +132,11 @@ export const apiService = {
     },
 
     bookService: {
-        getBooks: async (): Promise<IBook[]> => {
-            const {data} = await axiosInstance.get<{ entities: IBook[]; total: number }>('/books');
-            return data.entities
+        getBooks: async (page = 1, limit = 10): Promise<{ entities: IBook[]; total: number }> => {
+            const {data} = await axiosInstance.get<{ entities: IBook[]; total: number }>(
+                `/books?page=${page}&limit=${limit}`,
+            );
+            return data
         },
         searchBooks: async ({search}: ISearch): Promise<IBook[]> => {
             const {data} = await axiosInstance.get<{ entities: IBook[]; total: number }>(`/books?search=${search}`);
